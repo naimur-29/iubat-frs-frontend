@@ -1,0 +1,114 @@
+.main-navbar-container {
+  max-width: 1920px;
+  margin: 0 auto;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.main-navbar-container .nav-container {
+  height: 70px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-navbar-container .nav-container .left .title {
+  font-size: 2.4rem;
+  color: #323232;
+  text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+.main-navbar-container .nav-container .right .mobile-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 12px;
+  font-size: 1.4rem;
+  border-radius: 4px;
+  transition: all 0.1s ease;
+}
+
+.main-navbar-container .nav-container .right .mobile-nav:active {
+  background-color: #fff;
+  transform: scale(0.9);
+}
+
+.main-navbar-container .overlay {
+  background-color: #33333377;
+  width: 0%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -50%;
+  transition: all 0.15s ease-in-out;
+}
+
+.main-navbar-container .overlay.active {
+  left: 0;
+  width: 100%;
+  transition: all 0.75s ease-in-out;
+}
+
+.main-navbar-container .mobile-menu {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  height: 60%;
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 6px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.35s ease;
+}
+
+.main-navbar-container .mobile-menu .item-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 70%;
+  width: 80%;
+}
+
+.main-navbar-container .mobile-menu .item-container .item {
+  background-color: #44f7;
+  color: #fff;
+  border: 3px solid #000;
+  border-radius: 4px;
+  width: 100%;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.35s ease;
+}
+
+.main-navbar-container .mobile-menu .item-container .item:hover {
+  transform: translateY(-3px);
+}
+
+.main-navbar-container .mobile-menu .item-container .item:active {
+  transform: scale(1.1);
+}
+
+@media (min-width: 720px) {
+  .main-navbar-container .nav-container .right .mobile-nav {
+    display: none;
+  }
+
+  .main-navbar-container .mobile-menu {
+    display: none;
+  }
+
+  .main-navbar-container .overlay {
+    display: none;
+  }
+}
