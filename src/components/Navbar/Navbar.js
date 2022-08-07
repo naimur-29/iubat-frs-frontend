@@ -8,7 +8,7 @@ const Navbar = () => {
   const NavItems = [
     ["Home", "/"],
     ["Faculties", "/faculties"],
-    ["User Profile", "/users/:id"],
+    ["User Profile", "/user"],
     ["Login", "/login"],
     ["Register", "/register"],
   ];

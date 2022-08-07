@@ -1,8 +1,12 @@
 .main-navbar-container {
   max-width: 1920px;
   margin: 0 auto;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
   user-select: none;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  background-color: #fff;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15);
 }
 
 .main-navbar-container .nav-container {
@@ -15,8 +19,7 @@
 
 .main-navbar-container .nav-container .left .title {
   font-size: 2.4rem;
-  color: #323232;
-  text-shadow: 1px 3px 5px rgba(0, 0, 0, 0.15);
+  color: #232323;
 }
 
 .main-navbar-container .nav-container .right .item-container {
@@ -44,7 +47,7 @@
   background-color: #33333377;
   width: 0%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: -50%;
   transition: all 0.15s ease-in-out;
@@ -64,7 +67,7 @@
   padding: 12px;
   height: 60%;
   width: 80%;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   border-radius: 6px;
@@ -118,6 +121,12 @@
 }
 
 @media (min-width: 920px) {
+  .main-navbar-container {
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+
   .main-navbar-container .nav-container {
     padding: 0 40px;
   }
