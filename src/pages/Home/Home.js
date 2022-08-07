@@ -9,13 +9,24 @@ const Home = () => {
         Welcome To <span>IUBAT Faculty Rating System</span>
       </h1>
 
-      <Link to="/admin" className="btn">
-        {"Admin Panel"}
-      </Link>
-
-      <Link to="/login" className="btn">
-        {"Login to Continue"}
-      </Link>
+      <div className="btn-container">
+        <Link to="/admin" className="btn">
+          {"Admin Panel"}
+        </Link>
+        <Link to="/login" className="btn">
+          {"Login to Continue"}
+        </Link>
+        <Link
+          to="/"
+          className="btn"
+          onClick={() => {
+            window.localStorage.removeItem("userInfo");
+            alert("Logout Successful!");
+          }}
+        >
+          Logout
+        </Link>
+      </div>
     </div>
   );
 };

@@ -1,15 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./Login.css";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
 
 const LOGIN_URL = "/login";
 
 const Login = () => {
-  const { setAuth } = useAuth();
-
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -46,9 +43,21 @@ const Login = () => {
           },
         }
       );
-      const accessToken = response?.data?.accessToken;
+      const accessToken = response?.data?.token;
       const role = response?.data?.role;
-      setAuth({ user, password, accessToken, role });
+      const id = response?.data?.id;
+
+      // saving info to local storage
+      window.localStorage.setItem(
+        "userInfo",
+        JSON.stringify({
+          username: user,
+          token: accessToken,
+          role: role,
+          id: id,
+        })
+      );
+
       setUser("");
       setPassword("");
       navigate(from, { replace: true });

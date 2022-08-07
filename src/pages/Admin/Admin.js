@@ -1,8 +1,14 @@
 import React from "react";
 import "./Admin.css";
 
+import Users from "./components/Users";
+
 const Admin = () => {
-  return <div>Admin</div>;
+  return (
+    <div className="admin-main-container">
+      <Users />
+    </div>
+  );
 };
 
 export default Admin;

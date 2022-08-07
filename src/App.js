@@ -23,8 +23,10 @@ const App = () => {
         <Route path="register" element={<Register />} />
 
         {/* Protected Routes */}
-        <Route element={<RequireAuth />}>
-          <Route path="admin" element={<Admin />} />
+        <Route element={<RequireAuth allowedRoles={["user", "admin"]} />}>
+          <Route element={<RequireAuth allowedRoles={["admin"]} />}>
+            <Route path="admin" element={<Admin />} />
+          </Route>
           <Route path="user" element={<UserProfile />} />
           <Route path="faculties/:id" element={<Faculty />} />
         </Route>
