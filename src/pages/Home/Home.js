@@ -16,16 +16,6 @@ const Home = () => {
         <Link to="/login" className="btn">
           {"Login to Continue"}
         </Link>
-        <Link
-          to="/"
-          className="btn"
-          onClick={() => {
-            window.localStorage.removeItem("userInfo");
-            alert("Logout Successful!");
-          }}
-        >
-          Logout
-        </Link>
       </div>
     </div>
   );

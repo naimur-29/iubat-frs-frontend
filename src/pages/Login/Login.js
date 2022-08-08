@@ -7,6 +7,8 @@ import axios from "../../api/axios";
 const LOGIN_URL = "/login";
 
 const Login = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -57,10 +59,11 @@ const Login = () => {
           id: id,
         })
       );
+      window.localStorage.setItem("loggedIn", "true");
 
       setUser("");
       setPassword("");
-      navigate(from, { replace: true });
+      navigate(from === "/" ? "/faculties" : from, { replace: true });
     } catch (err) {
       if (!err?.response) {
         setErrMessage("Connection lost!");
@@ -75,53 +78,90 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    setLoggedIn(window.localStorage.getItem("loggedIn") ? true : false);
+  }, []);
+
   return (
-    <section className="login-main-container">
-      <p
-        ref={errRef}
-        className={errMessage ? "err-message" : "offscreen"}
-        aria-live="assertive"
-      >
-        {errMessage}
-      </p>
+    <>
+      {loggedIn ? (
+        <section className="login-main-container">
+          <div className="logged-in-container">
+            <h1 className="logged-in-text">Already logged in!</h1>
+            <Link
+              to="/"
+              className="link"
+              onClick={() => {
+                window.localStorage.removeItem("userInfo");
+                window.localStorage.setItem("loggedIn", "");
+                alert("Logout Successful!");
+              }}
+            >
+              Logout
+            </Link>
+            <Link to="/" className="link">
+              Return Home
+            </Link>
+          </div>
+        </section>
+      ) : (
+        <section className="login-main-container">
+          <h1 className="title">Login</h1>
+          <main className="login-inner-container">
+            <p
+              ref={errRef}
+              className={errMessage ? "errMessage" : "offscreen"}
+              aria-live="assertive"
+            >
+              {errMessage}
+            </p>
 
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        {/* Username Section */}
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          autoComplete="off"
-          ref={userRef}
-          onChange={(e) => setUser(e.target.value)}
-          value={user}
-          required
-        />
+            <form onSubmit={handleSubmit} className="login-form">
+              {/* Username Section */}
+              <section className="username">
+                <label htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  autoComplete="off"
+                  ref={userRef}
+                  onChange={(e) => setUser(e.target.value)}
+                  value={user}
+                  required
+                />
+              </section>
 
-        {/* Password Section */}
-        <label htmlFor="password">Username:</label>
-        <input
-          type="password"
-          id="password"
-          autoComplete="off"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          required
-        />
+              {/* Password Section */}
+              <section className="password">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  autoComplete="off"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                  required
+                />
+              </section>
 
-        {/* Submit Button */}
-        <button>Login</button>
-      </form>
+              {/* Submit Button */}
+              <button className="login-btn">Login</button>
+            </form>
 
-      {/* Not Registered */}
-      <p>
-        Not registered?
-        <span>
-          <Link to="/register">Register</Link>
-        </span>
-      </p>
-    </section>
+            {/* Not Registered */}
+            <p className="not-registered">
+              Not registered?
+              <span>
+                <Link to="/register" className="link">
+                  {" "}
+                  Register
+                </Link>
+              </span>
+            </p>
+          </main>
+        </section>
+      )}
+    </>
   );
 };
 

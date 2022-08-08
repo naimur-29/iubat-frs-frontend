@@ -1,5 +1,176 @@
 .login-main-container {
+  color: #121212;
   max-width: 1920px;
+  height: 100vh;
   margin: 0 auto;
-  padding: 150px 20px 20px 20px;
+  padding: 120px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.login-main-container .title {
+  user-select: none;
+  font-size: 2.2rem;
+  border: 4px solid #000;
+  max-width: 720px;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.login-main-container .login-inner-container {
+  border: 4px solid #000;
+  border-radius: 4px;
+  padding: 40px 10px;
+  max-width: 720px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 10px 50px 80px rgba(0, 0, 0, 0.15);
+}
+
+.login-main-container .login-inner-container .errMessage {
+  background-color: #f77;
+  color: #fff;
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transform: translateY(-60%);
+}
+
+.login-main-container .login-inner-container .login-form {
+  width: 100%;
+}
+
+.login-main-container .login-inner-container .login-form .username,
+.login-main-container .login-inner-container .login-form .password {
+  margin-bottom: 15px;
+}
+
+.login-main-container .login-inner-container .login-form .username label,
+.login-main-container .login-inner-container .login-form .password label {
+  user-select: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.login-main-container .login-inner-container .login-form .username input,
+.login-main-container .login-inner-container .login-form .password input {
+  font-size: 1.2rem;
+  width: 100%;
+  padding: 12px 10px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-top: 2px solid #000;
+  border-radius: 4px;
+  outline: none;
+  margin-bottom: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.35s ease;
+}
+
+.login-main-container .login-inner-container .login-form .username input:focus,
+.login-main-container .login-inner-container .login-form .password input:focus {
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.login-main-container .login-inner-container .login-btn {
+  width: 100%;
+  padding: 10px 0;
+  margin: 20px 0;
+  border-radius: 4px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  transition: all 0.25s ease-out;
+  cursor: pointer;
+  border: 3px solid #000;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (hover: hover) {
+  .login-main-container .login-inner-container .login-btn:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.login-main-container .login-inner-container .login-btn:active {
+  transform: scale(0.85);
+}
+
+.login-main-container .not-registered {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  gap: 10px;
+}
+
+.login-main-container .not-registered .link {
+  color: #44f;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* On Registration Success */
+.login-main-container .logged-in-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.login-main-container .logged-in-container .logged-in-text {
+  font-size: 2.7rem;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.login-main-container .logged-in-container .link {
+  width: 300px;
+  padding: 10px 0;
+  margin: 10px 0;
+  border-radius: 4px;
+  font-size: 1.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #44fe;
+  color: #fff;
+  border: 3px solid #000;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (hover: hover) {
+  .login-main-container .logged-in-container .link:hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* Responsive Media Queries */
+@media (min-width: 520px) {
+  .login-main-container .login-inner-container {
+    padding: 40px 20px;
+  }
+
+  .login-main-container .logged-in-container .logged-in-text {
+    font-size: 3rem;
+  }
 }

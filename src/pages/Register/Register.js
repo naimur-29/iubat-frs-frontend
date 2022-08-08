@@ -10,6 +10,8 @@ const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}/;
 const REGISTER_URL = "/users";
 
 const Register = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
   const userRef = useRef();
   const errRef = useRef();
 
@@ -86,158 +88,194 @@ const Register = () => {
     }
   };
 
+  useEffect(() => {
+    setLoggedIn(window.localStorage.getItem("loggedIn") ? true : false);
+  }, []);
+
   return (
     <>
       {success ? (
         <section className="register-main-container">
-          <h1>Success!</h1>
-          <p>
-            <Link to="/login">Login</Link>
-          </p>
+          <div className="on-success-container">
+            <h1 className="success-text">Success!</h1>
+            <Link to="/login" className="link">
+              Login
+            </Link>
+          </div>
+        </section>
+      ) : loggedIn ? (
+        <section className="register-main-container">
+          <div className="on-success-container">
+            <h1 className="success-text">Already logged in!</h1>
+            <Link to="/faculties" className="link">
+              View Faculties
+            </Link>
+            <Link to="/" className="link">
+              Return Home
+            </Link>
+          </div>
         </section>
       ) : (
         <section className="register-main-container">
-          <p
-            ref={errRef}
-            className={errMessage ? "errMessage" : "offscreen"}
-            aria-live="assertive"
-          >
-            {errMessage}
-          </p>
-
-          <form onSubmit={handleSubmit}>
-            {/* Username section */}
-            <label htmlFor="username">
-              Username:
-              <span className={validName ? "valid" : "hide"}>
-                <FaCheck />
-              </span>
-              <span className={validName || !user ? "hide" : "invalid"}>
-                <FaTimes />
-              </span>
-            </label>
-            <input
-              type="text"
-              id="username"
-              ref={userRef}
-              autoComplete="off"
-              required
-              onChange={(e) => setUser(e.target.value)}
-              aria-invalid={validName ? "false" : "true"}
-              aria-describedby="usernameNote"
-              onFocus={() => setUserFocus(true)}
-              onBlur={() => setUserFocus(false)}
-            />
+          <h1 className="title">Register</h1>
+          <main className="register-inner-container">
             <p
-              id="usernameNote"
-              className={
-                userFocus && user && !validName ? "instructions" : "offscreen"
-              }
+              ref={errRef}
+              className={errMessage ? "errMessage" : "offscreen"}
+              aria-live="assertive"
             >
-              <FaInfoCircle />
-              4 to 24 characters.
-              <br />
-              Must begin with a letter.
-              <br />
-              Letters, numbers, underscores, hyphens allowed!
+              {errMessage}
             </p>
+            <form onSubmit={handleSubmit} className="registration-form">
+              {/* Username section */}
+              <section className="username">
+                <label htmlFor="username">
+                  Username
+                  <span className={validName ? "valid" : "hide"}>
+                    <FaCheck />
+                  </span>
+                  <span className={validName || !user ? "hide" : "invalid"}>
+                    <FaTimes />
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  id="username"
+                  ref={userRef}
+                  autoComplete="off"
+                  required
+                  onChange={(e) => setUser(e.target.value)}
+                  aria-invalid={validName ? "false" : "true"}
+                  aria-describedby="usernameNote"
+                  onFocus={() => setUserFocus(true)}
+                  onBlur={() => setUserFocus(false)}
+                />
+                <p
+                  id="usernameNote"
+                  className={
+                    userFocus && user && !validName
+                      ? "instructions"
+                      : "offscreen"
+                  }
+                >
+                  <FaInfoCircle className="info-icon" />
+                  4 to 24 characters.
+                  <br />
+                  Must begin with a letter.
+                  <br />
+                  Letters, numbers, underscores, hyphens allowed!
+                </p>
+              </section>
 
-            {/* Password Section */}
-            <label htmlFor="password">
-              Password:
-              <span className={validPassword ? "valid" : "hide"}>
-                <FaCheck />
-              </span>
-              <span className={validPassword || !password ? "hide" : "invalid"}>
-                <FaTimes />
-              </span>
-            </label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              aria-invalid={validPassword ? "false" : "true"}
-              aria-describedby="passwordNote"
-              onFocus={() => setPasswordFocus(true)}
-              onBlur={() => setPasswordFocus(false)}
-            />
-            <p
-              id="passwordNote"
-              className={
-                passwordFocus && !validPassword ? "instructions" : "offscreen"
-              }
-            >
-              <FaInfoCircle />
-              8 to 24 characters.
-              <br />
-              Must include uppercase and lowercase letters, a number and a
-              special character.
-              <br />
-              Allowed special characters:{" "}
-              <span aria-label="exclamation mark">!</span>
-              <span aria-label="at symbol">@</span>
-              <span aria-label="hashtag">#</span>
-              <span aria-label="dollar sign">$</span>
-              <span aria-label="percent">%</span>
-            </p>
+              {/* Password Section */}
+              <section className="password">
+                <label htmlFor="password">
+                  Password
+                  <span className={validPassword ? "valid" : "hide"}>
+                    <FaCheck />
+                  </span>
+                  <span
+                    className={validPassword || !password ? "hide" : "invalid"}
+                  >
+                    <FaTimes />
+                  </span>
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  aria-invalid={validPassword ? "false" : "true"}
+                  aria-describedby="passwordNote"
+                  onFocus={() => setPasswordFocus(true)}
+                  onBlur={() => setPasswordFocus(false)}
+                />
+                <p
+                  id="passwordNote"
+                  className={
+                    passwordFocus && !validPassword
+                      ? "instructions"
+                      : "offscreen"
+                  }
+                >
+                  <FaInfoCircle className="info-icon" />
+                  8 to 24 characters.
+                  <br />
+                  Must include uppercase and lowercase letters, a number and a
+                  special character.
+                  <br />
+                  Allowed special characters:{" "}
+                  <span aria-label="exclamation mark">!</span>
+                  <span aria-label="at symbol">@</span>
+                  <span aria-label="hashtag">#</span>
+                  <span aria-label="dollar sign">$</span>
+                  <span aria-label="percent">%</span>
+                </p>
+              </section>
 
-            {/* Match Password */}
-            <label htmlFor="confirm-password">
-              Confirm Password:
-              <span
-                className={
-                  validMatchPassword && matchPassword ? "valid" : "hide"
+              {/* Match Password */}
+              <section className="match-password">
+                <label htmlFor="confirm-password">
+                  Confirm Password
+                  <span
+                    className={
+                      validMatchPassword && matchPassword ? "valid" : "hide"
+                    }
+                  >
+                    <FaCheck />
+                  </span>
+                  <span
+                    className={
+                      validMatchPassword || !matchPassword ? "hide" : "invalid"
+                    }
+                  >
+                    <FaTimes />
+                  </span>
+                </label>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  onChange={(e) => setMatchPassword(e.target.value)}
+                  required
+                  aria-invalid={validMatchPassword ? "false" : "true"}
+                  aria-describedby="confirmNote"
+                  onFocus={() => setMatchPasswordFocus(true)}
+                  onBlur={() => setMatchPasswordFocus(false)}
+                />
+                <p
+                  id="confirmNote"
+                  className={
+                    matchPasswordFocus && !validMatchPassword
+                      ? "instructions"
+                      : "offscreen"
+                  }
+                >
+                  <FaInfoCircle className="info-icon" />
+                  Must match the first password input field!
+                </p>
+              </section>
+
+              {/* Submit Button */}
+              <button
+                className="signin-btn"
+                disabled={
+                  !validName || !validPassword || !validMatchPassword
+                    ? true
+                    : false
                 }
               >
-                <FaCheck />
-              </span>
-              <span
-                className={
-                  validMatchPassword || !matchPassword ? "hide" : "invalid"
-                }
-              >
-                <FaTimes />
-              </span>
-            </label>
-            <input
-              type="password"
-              id="confirm-password"
-              onChange={(e) => setMatchPassword(e.target.value)}
-              required
-              aria-invalid={validMatchPassword ? "false" : "true"}
-              aria-describedby="confirmNote"
-              onFocus={() => setMatchPasswordFocus(true)}
-              onBlur={() => setMatchPasswordFocus(false)}
-            />
-            <p
-              id="confirmNote"
-              className={
-                matchPasswordFocus && !validMatchPassword
-                  ? "instructions"
-                  : "offscreen"
-              }
-            >
-              <FaInfoCircle />
-              Must match the first password input field!
-            </p>
+                Sign Up
+              </button>
+            </form>
 
-            {/* Submit Button */}
-            <button
-              disabled={
-                !validName || !validPassword || !validMatchPassword
-                  ? true
-                  : false
-              }
-            >
-              Sign Up
-            </button>
-          </form>
-          <p>
-            Already registered?
-            <br />
-            <Link to="/login">Login</Link>
-          </p>
+            <div className="already-registered">
+              <p>Already registered?</p>
+              <Link to="/login" className="link">
+                Login
+              </Link>
+            </div>
+          </main>
+          <div className="placeholder"></div>
         </section>
       )}
     </>
