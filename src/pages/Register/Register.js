@@ -63,7 +63,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post(
+      await axios.post(
         REGISTER_URL,
         JSON.stringify({
           username: user,
@@ -74,7 +74,6 @@ const Register = () => {
           withCredentials: true,
         }
       );
-      console.log(response.data);
       setSuccess(true);
     } catch (err) {
       if (!err?.response) {
