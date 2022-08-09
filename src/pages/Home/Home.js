@@ -6,15 +6,20 @@ const Home = () => {
   return (
     <div className="home-main-container">
       <h1 className="title">
-        Welcome To <span>IUBAT Faculty Rating System</span>
+        IUBAT Faculty Rating System
+        <br />
+        <span>Welcome</span>
       </h1>
 
       <div className="btn-container">
         <Link to="/admin" className="btn">
           {"Admin Panel"}
         </Link>
-        <Link to="/login" className="btn">
-          {"Login to Continue"}
+        <Link to="/faculties" className="btn">
+          {"Browse Faculties"}
+        </Link>
+        <Link to="/register" className="btn">
+          {"Login / Register"}
         </Link>
       </div>
     </div>

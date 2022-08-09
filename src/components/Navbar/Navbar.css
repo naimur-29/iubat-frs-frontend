@@ -18,7 +18,7 @@
 }
 
 .main-navbar-container .nav-container .left .title {
-  font-size: 2.4rem;
+  font-size: 1.4rem;
   color: #232323;
 }
 
@@ -31,8 +31,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 6px;
-  padding: 12px;
-  font-size: 1.4rem;
+  padding: 6px;
+  font-size: 1.2rem;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.1s ease;
@@ -106,6 +106,18 @@
 
 .main-navbar-container .mobile-menu .item-container .item:active {
   transform: scale(1.1);
+}
+
+/* RESPONSIVE MEDIA QUERY */
+@media (min-width: 340px) {
+  .main-navbar-container .nav-container .left .title {
+    font-size: 2.4rem;
+  }
+
+  .main-navbar-container .nav-container .right .mobile-nav {
+    padding: 12px;
+    font-size: 1.4rem;
+  }
 }
 
 @media (min-width: 520px) {

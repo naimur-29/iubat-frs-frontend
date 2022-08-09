@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+  animation: Loading 1s ease-in;
 }
 
 .login-main-container .title {

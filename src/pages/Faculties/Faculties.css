@@ -10,6 +10,7 @@
   gap: 100px;
   flex-direction: column;
   background-color: #44f7;
+  animation: Loading 1s ease-in;
 }
 
 .faculties-main-container .search-input {
@@ -22,7 +23,6 @@
   border: none;
   padding: 10px 20px;
   font-size: 1.4rem;
-  /* text-align: center; */
   transition: all 0.35s ease;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
 }
@@ -34,6 +34,7 @@
   align-content: center;
   justify-content: center;
   width: 100%;
+  animation: BackUp 0.5s ease;
 }
 
 /* RESPONSIVE MEDIA QUERIES */
