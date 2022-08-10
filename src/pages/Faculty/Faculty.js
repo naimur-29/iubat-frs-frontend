@@ -42,18 +42,25 @@ const Faculty = () => {
 
   return (
     <div className="faculty-main-container">
-      <div className="faculty-profile">
-        <FacultyCard item={faculty} />
-      </div>
+      <div className="faculty-info-container">
+        <div className="faculty-profile">
+          <FacultyCard item={faculty} />
+        </div>
 
-      <div className="detailed-rating-container">
-        <h3 className="title">Detailed Ratings Information</h3>
-        <div className="rating-info">
-          <p className="teaching-rate">
-            {`Average Ratings on teaching --> ${faculty?.teaching_rate}/10`}
-          </p>
-          <p className="marking-rate">{`Average Ratings on marking --> ${faculty?.marking_rate}/10`}</p>
-          <p className="assignment-rate">{`Average Ratings on assignment --> ${faculty?.assignment_rate}/10`}</p>
+        <div className="detailed-ratings-container">
+          <h3 className="title">Detailed Ratings Information</h3>
+          <div className="ratings-info">
+            <div className="left">
+              <p>Teaching</p>
+              <p>Marking</p>
+              <p>Assignment</p>
+            </div>
+            <div className="right">
+              <p>{`${faculty?.teaching_rate}/10`}</p>
+              <p>{`${faculty?.marking_rate}/10`}</p>
+              <p>{`${faculty?.assignment_rate}/10`}</p>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -9,19 +9,100 @@
   animation: Loading 1s ease-in;
 }
 
-.faculty-main-container .card-container {
+.faculty-main-container .faculty-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.faculty-main-container .faculty-info-container .card-container {
   cursor: default;
   animation: none;
   animation: Grow 0.5s ease-out;
 }
 
 @media (hover: hover) {
-  .faculty-main-container .card-container:hover {
+  .faculty-main-container .faculty-info-container .card-container:hover {
     transform: none;
     box-shadow: 0 35px 50px rgba(0, 0, 0, 0.35);
   }
 }
 
-.faculty-main-container .faculty-profile {
+.faculty-main-container .faculty-info-container .faculty-profile {
   margin-bottom: 50px;
+}
+
+.faculty-main-container .faculty-info-container .detailed-ratings-container {
+  background-color: #44fa;
+  color: #fff;
+  width: 100%;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 40px;
+  animation: GrowWidth 1s ease-out, GlowBg2 1s ease infinite alternate;
+}
+
+.faculty-main-container
+  .faculty-info-container
+  .detailed-ratings-container
+  .title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.faculty-main-container
+  .faculty-info-container
+  .detailed-ratings-container
+  .ratings-info {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.faculty-main-container
+  .faculty-info-container
+  .detailed-ratings-container
+  .ratings-info
+  .left,
+.faculty-main-container
+  .faculty-info-container
+  .detailed-ratings-container
+  .ratings-info
+  .right {
+  width: 49%;
+}
+
+.faculty-main-container
+  .faculty-info-container
+  .detailed-ratings-container
+  .ratings-info
+  .left
+  p,
+.faculty-main-container
+  .faculty-info-container
+  .detailed-ratings-container
+  .ratings-info
+  .right
+  p {
+  text-align: center;
+  border: 3px solid #fff;
+  border-radius: 12px;
+  padding: 4px 12px;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 980px) {
+  .faculty-main-container .faculty-info-container {
+    flex-direction: row;
+    gap: 40px;
+  }
 }
