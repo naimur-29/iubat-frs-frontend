@@ -11,7 +11,7 @@
   justify-content: flex-start;
   flex-direction: column;
   background-color: #44ea;
-  animation: GlowBg 3s ease-in alternate infinite;
+  animation: Loading 1s ease-in, GlowBg 3s ease-in alternate infinite;
 }
 
 .home-main-container .title {

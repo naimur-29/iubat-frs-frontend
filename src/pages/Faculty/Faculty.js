@@ -70,10 +70,6 @@ const Faculty = () => {
           You can only rate once! The ratings refresh at the starting of each
           semester.
         </p>
-        <p className="notice">
-          Do this on your own choice! We're not responsible for what happens
-          next!
-        </p>
 
         <div className="voting-system">
           <VotingSystem

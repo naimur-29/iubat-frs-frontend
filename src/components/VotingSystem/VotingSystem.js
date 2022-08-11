@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
+import "./VotingSystem.css";
 
 import axios from "../../api/axios";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
@@ -45,104 +46,117 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
   };
 
   return (
-    <>
-      <div className="teaching">
-        <label>
-          {`Teaching --> ${
-            voteValue.teaching_value ? voteValue.teaching_value : 0
-          }`}
-        </label>
-        {voteValue.vote ? (
-          <input
-            type="range"
-            min={0}
-            max={10}
-            disabled
-            value={voteValue.teaching_value ? voteValue.teaching_value : 0}
-            onChange={(e) =>
-              setVoteValue({ ...voteValue, teaching_value: e.target.value })
-            }
-          />
-        ) : (
-          <input
-            type="range"
-            min={0}
-            max={10}
-            value={voteValue.teaching_value ? voteValue.teaching_value : 0}
-            onChange={(e) =>
-              setVoteValue({ ...voteValue, teaching_value: e.target.value })
-            }
-          />
-        )}
-      </div>
+    <div className="container">
+      <div className="votes-container">
+        <div className="vote">
+          <label>
+            {`Teaching --> ${
+              voteValue.teaching_value ? voteValue.teaching_value : 0
+            }`}
+          </label>
+          {voteValue.vote ? (
+            <input
+              type="range"
+              min={0}
+              max={10}
+              className="disabled"
+              disabled
+              value={voteValue.teaching_value ? voteValue.teaching_value : 0}
+              onChange={(e) =>
+                setVoteValue({ ...voteValue, teaching_value: e.target.value })
+              }
+            />
+          ) : (
+            <input
+              type="range"
+              min={0}
+              max={10}
+              value={voteValue.teaching_value ? voteValue.teaching_value : 0}
+              onChange={(e) =>
+                setVoteValue({ ...voteValue, teaching_value: e.target.value })
+              }
+            />
+          )}
+        </div>
 
-      <div className="marking">
-        <label>{`Marking --> ${
-          voteValue.marking_value ? voteValue.marking_value : 0
-        }`}</label>
-        {voteValue.vote ? (
-          <input
-            type="range"
-            min={0}
-            max={10}
-            disabled
-            value={voteValue.marking_value ? voteValue.marking_value : 0}
-            onChange={(e) =>
-              setVoteValue({ ...voteValue, marking_value: e.target.value })
-            }
-          />
-        ) : (
-          <input
-            type="range"
-            min={0}
-            max={10}
-            value={voteValue.marking_value ? voteValue.marking_value : 0}
-            onChange={(e) =>
-              setVoteValue({ ...voteValue, marking_value: e.target.value })
-            }
-          />
-        )}
-      </div>
+        <div className="vote">
+          <label>{`Marking --> ${
+            voteValue.marking_value ? voteValue.marking_value : 0
+          }`}</label>
+          {voteValue.vote ? (
+            <input
+              type="range"
+              min={0}
+              max={10}
+              disabled
+              className="disabled"
+              value={voteValue.marking_value ? voteValue.marking_value : 0}
+              onChange={(e) =>
+                setVoteValue({ ...voteValue, marking_value: e.target.value })
+              }
+            />
+          ) : (
+            <input
+              type="range"
+              min={0}
+              max={10}
+              value={voteValue.marking_value ? voteValue.marking_value : 0}
+              onChange={(e) =>
+                setVoteValue({ ...voteValue, marking_value: e.target.value })
+              }
+            />
+          )}
+        </div>
 
-      <div className="assignment">
-        <label>
-          {`Assignment --> ${
-            voteValue.assignment_value ? voteValue.assignment_value : 0
-          }`}
-        </label>
-        {voteValue.vote ? (
-          <input
-            type="range"
-            min={0}
-            max={10}
-            disabled
-            value={voteValue.assignment_value ? voteValue.assignment_value : 0}
-            onChange={(e) =>
-              setVoteValue({ ...voteValue, assignment_value: e.target.value })
-            }
-          />
-        ) : (
-          <input
-            type="range"
-            min={0}
-            max={10}
-            value={voteValue.assignment_value ? voteValue.assignment_value : 0}
-            onChange={(e) =>
-              setVoteValue({ ...voteValue, assignment_value: e.target.value })
-            }
-          />
-        )}
+        <div className="vote">
+          <label>
+            {`Assignment --> ${
+              voteValue.assignment_value ? voteValue.assignment_value : 0
+            }`}
+          </label>
+          {voteValue.vote ? (
+            <input
+              type="range"
+              min={0}
+              max={10}
+              disabled
+              className="disabled"
+              value={
+                voteValue.assignment_value ? voteValue.assignment_value : 0
+              }
+              onChange={(e) =>
+                setVoteValue({ ...voteValue, assignment_value: e.target.value })
+              }
+            />
+          ) : (
+            <input
+              type="range"
+              min={0}
+              max={10}
+              value={
+                voteValue.assignment_value ? voteValue.assignment_value : 0
+              }
+              onChange={(e) =>
+                setVoteValue({ ...voteValue, assignment_value: e.target.value })
+              }
+            />
+          )}
+        </div>
       </div>
 
       <div className="btn-container">
-        <button className="rate" onClick={() => handleVoting()}>
+        <Link to="/faculties" className="btn">
+          Go Back
+        </Link>
+        <Link
+          to={`/faculties/${id}`}
+          className="btn"
+          onClick={() => handleVoting()}
+        >
           {voteValue.vote ? "Remove" : "Submit"}
-        </button>
-        <Link to="/faculties" className="go-back">
-          Faculties
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 

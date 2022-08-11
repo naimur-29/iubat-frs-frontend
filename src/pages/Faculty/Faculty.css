@@ -23,6 +23,10 @@
   animation: Grow 0.5s ease-out;
 }
 
+.faculty-main-container .faculty-info-container .card-container .rating-filler {
+  animation: GlowBg 10s ease-in alternate infinite;
+}
+
 @media (hover: hover) {
   .faculty-main-container .faculty-info-container .card-container:hover {
     transform: none;
@@ -44,8 +48,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 40px;
-  animation: GrowWidth 1s ease-out, GlowBg2 1s ease infinite alternate;
+  margin-bottom: 20px;
+  animation: GlowBg2 10s ease-in alternate infinite;
 }
 
 .faculty-main-container
@@ -100,9 +104,65 @@
   margin-bottom: 10px;
 }
 
+.faculty-main-container .voting-container {
+  background-color: #44fa;
+  color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.faculty-main-container .voting-container .title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.faculty-main-container .voting-container .info {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+.faculty-main-container .voting-system {
+  width: 100%;
+}
+
 @media (min-width: 980px) {
   .faculty-main-container .faculty-info-container {
     flex-direction: row;
     gap: 40px;
+  }
+
+  .faculty-main-container .faculty-info-container .detailed-ratings-container {
+    animation: GrowWidth 1s ease-out, GlowBg2 10s ease-in alternate infinite;
+  }
+
+  .faculty-main-container .voting-container {
+    animation: GrowWidth 1s ease-out;
+  }
+
+  .faculty-main-container .voting-container .title {
+    font-size: 2.3rem;
+  }
+
+  .faculty-main-container .voting-container .info {
+    font-size: 1.4rem;
+  }
+
+  .faculty-main-container
+    .faculty-info-container
+    .detailed-ratings-container
+    .title {
+    font-size: 2.3rem;
+  }
+
+  .faculty-main-container
+    .faculty-info-container
+    .detailed-ratings-container
+    .ratings-info {
+    font-size: 1.4rem;
   }
 }
