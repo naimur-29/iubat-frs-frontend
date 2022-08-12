@@ -145,15 +145,15 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
       </div>
 
       <div className="btn-container">
-        <Link to="/faculties" className="btn">
-          Go Back
-        </Link>
         <Link
           to={`/faculties/${id}`}
           className="btn"
           onClick={() => handleVoting()}
         >
           {voteValue.vote ? "Remove" : "Submit"}
+        </Link>
+        <Link to="/faculties" className="btn">
+          Go Back
         </Link>
       </div>
     </div>

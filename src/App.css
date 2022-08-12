@@ -72,6 +72,16 @@
   }
 }
 
+@keyframes BorderGlow {
+  0% {
+    border-color: #44e7;
+  }
+
+  100% {
+    border-color: #4f7a;
+  }
+}
+
 @keyframes GrowWidth {
   0% {
     width: 0;

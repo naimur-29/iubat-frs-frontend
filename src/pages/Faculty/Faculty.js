@@ -36,6 +36,8 @@ const Faculty = () => {
       }
     };
 
+    window.scrollTo(0, 0);
+
     get_faculty();
     get_vote();
   }, [id, userId, axiosPrivate]);

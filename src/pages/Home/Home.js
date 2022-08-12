@@ -16,7 +16,7 @@ const Home = () => {
           {"Admin Panel"}
         </Link>
         <Link to="/faculties" className="btn">
-          {"Browse Faculties"}
+          {"Demo Login"}
         </Link>
         <Link to="/register" className="btn">
           {"Login / Register"}

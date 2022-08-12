@@ -185,6 +185,7 @@
 
   .container .votes-container .vote label {
     font-size: 2rem;
+    text-align: center;
   }
 
   .container .btn-container {
