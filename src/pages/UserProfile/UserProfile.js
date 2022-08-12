@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./UserProfile.css";
 import { Link } from "react-router-dom";
+import { AiOutlineDoubleLeft } from "react-icons/ai";
 
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import axios from "../../api/axios";
@@ -16,6 +17,8 @@ const USER_DEFAULT_PROFILE_PICS = [
 const UserProfile = () => {
   const [user, setUser] = useState({});
   const userId = JSON.parse(window.localStorage.getItem("userInfo"))?.id;
+
+  const [menu, setMenu] = useState(false);
 
   const [userVotes, setUserVotes] = useState([]);
   const [votedFaculties, setVotedFaculties] = useState([]);
@@ -51,6 +54,29 @@ const UserProfile = () => {
 
   return (
     <section className="user-profile-main-container">
+      <div className={`overlay ${menu ? "active" : ""}`}></div>
+
+      <div className={`menu-container ${menu ? "active" : ""}`}>
+        <ul className="btn-container">
+          {/* <Link to="/" className="btn">
+            Change Profile Info
+          </Link>
+          <Link to="/" className="btn">
+            Change Password
+          </Link> */}
+          <Link to={`accdel/${userId}`} className="btn">
+            Delete Your Account
+          </Link>
+        </ul>
+      </div>
+
+      <div
+        className={`menu-nav ${menu ? "active" : ""}`}
+        onClick={() => setMenu(!menu)}
+      >
+        <AiOutlineDoubleLeft className="icon" />
+      </div>
+
       <div className="cover-img">
         <img
           src={

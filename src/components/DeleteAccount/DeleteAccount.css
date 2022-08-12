@@ -1,0 +1,11 @@
+.delete-acc-container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 150px 20px;
+}
+
+.delete-acc-container .delete-btn {
+  background-color: #f66;
+  color: #fff;
+}

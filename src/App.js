@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -11,6 +11,8 @@ import UserProfile from "./pages/UserProfile/UserProfile";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import RequireAuth from "./components/Utils/RequireAuth";
+import DeleteAccount from "./components/DeleteAccount/DeleteAccount";
+import Unauthorized from "./components/Unauthorized/Unauthorized";
 
 const App = () => {
   return (
@@ -21,6 +23,7 @@ const App = () => {
         <Route path="faculties" element={<Faculties />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="unauthorized" element={<Unauthorized />} />
 
         {/* Protected Routes */}
         <Route element={<RequireAuth allowedRoles={["user", "admin"]} />}>
@@ -29,6 +32,7 @@ const App = () => {
           </Route>
           <Route path="user" element={<UserProfile />} />
           <Route path="faculties/:id" element={<Faculty />} />
+          <Route path="user/accdel/:id" element={<DeleteAccount />} />
         </Route>
 
         {/* Error Paths */}

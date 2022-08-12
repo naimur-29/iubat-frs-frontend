@@ -1,7 +1,59 @@
 .user-profile-main-container {
   max-width: 1920px;
   margin: 0 auto;
+  position: relative;
   animation: Loading 1s ease-in;
+}
+
+.user-profile-main-container .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0%;
+  height: 100%;
+  transition: all 0.3s ease-in;
+}
+
+.user-profile-main-container .overlay.active {
+  z-index: 11;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.user-profile-main-container .menu-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 15px;
+  position: fixed;
+  top: 100px;
+  left: calc(100% - 50px);
+  width: 100px;
+  height: 100px;
+  z-index: 100;
+  border-radius: 50%;
+  background-color: orange;
+  cursor: pointer;
+  transition: all 0.15s ease-in;
+}
+
+.user-profile-main-container .menu-nav .icon {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.user-profile-main-container .menu-nav.active .icon {
+  transform: rotate(180deg);
+}
+
+.user-profile-main-container .menu-nav:active {
+  transform: scale(0.95);
+}
+
+.user-profile-main-container .menu-nav.active {
+  transform: scale(0.95) translateX(-50px);
+  width: 150px;
+  border-radius: 20px;
 }
 
 .user-profile-main-container .cover-img {
@@ -223,6 +275,59 @@
     .name {
     z-index: 10;
     opacity: 1;
+  }
+}
+
+.user-profile-main-container .menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 11;
+  transform: translate(-3000px, -50%);
+  transition: all 0.35s ease-in;
+}
+
+.user-profile-main-container .menu-container.active {
+  transform: translate(-50%, -50%);
+}
+
+.user-profile-main-container .menu-container .btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 90vw;
+  max-width: 1920px;
+}
+
+.user-profile-main-container .menu-container .btn-container .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  padding: 8px 0;
+  height: auto;
+  color: #000;
+  text-shadow: 5px 5px 10px rgba(255, 255, 255, 1);
+  font-size: 1.4rem;
+  font-weight: 500;
+  border: 5px solid rgba(255, 255, 255, 1);
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 50px 50px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  transition: all 0.35s ease;
+}
+
+@media (hover: hover) {
+  .user-profile-main-container .menu-container .btn-container .btn:hover {
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.35);
+    transform: translateY(-3px);
   }
 }
 

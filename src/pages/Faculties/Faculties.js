@@ -22,7 +22,7 @@ const Faculties = () => {
   }, [skip]);
 
   return (
-    <div className="faculties-main-container">
+    <section className="faculties-main-container">
       <input
         type="text"
         className="search-input"
@@ -31,19 +31,25 @@ const Faculties = () => {
         onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
       />
       <div className="faculties-card-container">
-        {faculties
-          .filter((element) => element.name.toLowerCase().includes(searchInput))
-          .map((item) => (
-            <Link
-              to={`/faculties/${item.id}`}
-              key={item.id}
-              onClick={() => window.scrollTo(0, 0)}
-            >
-              <FacultyCard item={item} />
-            </Link>
-          ))}
+        {faculties.length ? (
+          faculties
+            .filter((element) =>
+              element.name.toLowerCase().includes(searchInput)
+            )
+            .map((item) => (
+              <Link
+                to={`/faculties/${item.id}`}
+                key={item.id}
+                onClick={() => window.scrollTo(0, 0)}
+              >
+                <FacultyCard item={item} />
+              </Link>
+            ))
+        ) : (
+          <h1 className="loading">Loading...</h1>
+        )}
       </div>
-    </div>
+    </section>
   );
 };
 
