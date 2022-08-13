@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./VotingSystem.css";
 
 import axios from "../../api/axios";
@@ -7,6 +7,7 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
   const userId = JSON.parse(window.localStorage.getItem("userInfo")).id;
 
@@ -145,16 +146,12 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
       </div>
 
       <div className="btn-container">
-        <Link
-          to={`/faculties/${id}`}
-          className="btn"
-          onClick={() => handleVoting()}
-        >
+        <button className="btn" onClick={() => handleVoting()}>
           {voteValue.vote ? "Remove" : "Submit"}
-        </Link>
-        <Link to="/faculties" className="btn">
+        </button>
+        <button to="/faculties" className="btn" onClick={() => navigate(-1)}>
           Go Back
-        </Link>
+        </button>
       </div>
     </div>
   );

@@ -60,11 +60,12 @@
   height: 250px;
   width: 100%;
   position: relative;
+  animation: LoadingVotedFacultyCard 0.75s ease infinite alternate;
 }
 
 .user-profile-main-container .cover-img img {
   object-fit: cover;
-  object-position: center;
+  object-position: top;
   width: 100%;
   height: 100%;
   z-index: -10;
@@ -102,6 +103,7 @@
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
   margin-bottom: -30px;
   transform: translateY(-30%);
+  animation: LoadingVotedFacultyCard 0.75s ease infinite alternate-reverse;
 }
 
 .user-profile-main-container .user-info .profile-pic img {
@@ -329,6 +331,29 @@
     box-shadow: 0 50px 100px rgba(0, 0, 0, 0.35);
     transform: translateY(-3px);
   }
+}
+
+/* Loading Animation */
+.user-profile-main-container
+  .votes-container
+  .voted-faculty-container
+  .item
+  .loading {
+  height: 100%;
+  width: 100%;
+  border-radius: 0;
+  border: none;
+  animation: LoadingVotedFacultyCard 0.75s ease infinite alternate;
+}
+
+.user-profile-main-container
+  .votes-container
+  .voted-faculty-container
+  .item
+  .name.loading {
+  width: 250px;
+  height: 40px;
+  animation: LoadingVotedFacultyCard 0.75s ease infinite alternate-reverse;
 }
 
 /* RESPONSIVE MEDIA QUERIES */

@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 import axios from "../../api/axios";
 import FacultyCard from "../../components/FacultyCard/FacultyCard";
+import LoadingFacultyCard from "../../components/LoadingFacultyCard/LoadingFacultyCard";
 
 const Faculties = () => {
-  const [faculties, setFaculties] = useState([]);
+  const [faculties, setFaculties] = useState(new Array(20).fill(null));
   const [searchInput, setSearchInput] = useState("");
   const [skip, setSkip] = useState(0);
 
@@ -21,6 +22,10 @@ const Faculties = () => {
     get_faculties();
   }, [skip]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section className="faculties-main-container">
       <input
@@ -31,23 +36,21 @@ const Faculties = () => {
         onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
       />
       <div className="faculties-card-container">
-        {faculties.length ? (
-          faculties
-            .filter((element) =>
-              element.name.toLowerCase().includes(searchInput)
-            )
-            .map((item) => (
-              <Link
-                to={`/faculties/${item.id}`}
-                key={item.id}
-                onClick={() => window.scrollTo(0, 0)}
-              >
-                <FacultyCard item={item} />
-              </Link>
-            ))
-        ) : (
-          <h1 className="loading">Loading...</h1>
-        )}
+        {faculties[0]
+          ? faculties
+              .filter((element) =>
+                element.name.toLowerCase().includes(searchInput)
+              )
+              .map((item) => (
+                <Link
+                  to={`/faculties/${item.id}`}
+                  key={item.id}
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  <FacultyCard item={item} />
+                </Link>
+              ))
+          : faculties.map((item, index) => <LoadingFacultyCard key={index} />)}
       </div>
     </section>
   );

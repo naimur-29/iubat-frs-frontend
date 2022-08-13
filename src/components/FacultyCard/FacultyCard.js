@@ -5,6 +5,7 @@ const Card = ({ item }) => {
   return (
     <div className="card-container">
       <img
+        loading="lazy"
         className="top-img"
         src={item.img_url}
         alt="profile pic of faculty"

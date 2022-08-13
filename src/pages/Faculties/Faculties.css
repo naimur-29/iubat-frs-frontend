@@ -37,13 +37,6 @@
   animation: BackUp 0.5s ease;
 }
 
-.faculties-main-container .faculties-card-container .loading {
-  font-size: 2.4rem;
-  color: #fff;
-  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
-  transform: translateX(10px);
-}
-
 /* RESPONSIVE MEDIA QUERIES */
 @media (min-width: 780px) {
   .faculties-main-container .faculties-card-container {

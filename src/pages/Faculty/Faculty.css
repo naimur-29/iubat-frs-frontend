@@ -20,7 +20,6 @@
 .faculty-main-container .faculty-info-container .card-container {
   cursor: default;
   animation: none;
-  animation: Grow 0.5s ease-out;
 }
 
 .faculty-main-container .faculty-info-container .card-container .rating-filler {

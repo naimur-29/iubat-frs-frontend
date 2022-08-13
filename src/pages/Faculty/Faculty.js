@@ -6,6 +6,7 @@ import axios from "../../api/axios";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import FacultyCard from "../../components/FacultyCard/FacultyCard";
 import VotingSystem from "../../components/VotingSystem/VotingSystem";
+import LoadingFacultyCard from "../../components/LoadingFacultyCard/LoadingFacultyCard";
 
 const Faculty = () => {
   const { id } = useParams();
@@ -46,7 +47,11 @@ const Faculty = () => {
     <div className="faculty-main-container">
       <div className="faculty-info-container">
         <div className="faculty-profile">
-          <FacultyCard item={faculty} />
+          {faculty?.name ? (
+            <FacultyCard item={faculty} />
+          ) : (
+            <LoadingFacultyCard isSingleFaculty />
+          )}
         </div>
 
         <div className="detailed-ratings-container">

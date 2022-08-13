@@ -1,4 +1,5 @@
-.card-container {
+/* Faculty Card Loading Animation */
+.loading {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -7,26 +8,18 @@
   width: 310px;
   height: 425px;
   background-color: #fff;
-  cursor: pointer;
   border-radius: 20px;
   border: 5px solid #fff;
   box-shadow: 0 35px 50px rgba(0, 0, 0, 0.35);
   transition: all 0.25s ease-out;
+  animation: Shrink 0.5s ease-in;
 }
 
-@media (hover: hover) {
-  .card-container:hover {
-    background-color: #fff;
-    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
-    transform: scale(0.95);
-  }
+.loading.single-faculty {
+  animation: Grow 0.5s ease-out;
 }
 
-.card-container:active {
-  transform: scale(0.95);
-}
-
-.card-container .top-img {
+.loading .top-img {
   width: 200px;
   height: 200px;
   object-fit: cover;
@@ -34,6 +27,7 @@
   position: absolute;
   top: -50px;
   border: 5px solid #fff;
+  background-color: #fffd;
   border-radius: 50%;
   box-shadow: none;
   transition: all 0.35s ease-out;
@@ -41,13 +35,7 @@
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
 }
 
-@media (hover: hover) {
-  .card-container:hover .top-img {
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.45);
-  }
-}
-
-.card-container .info-container {
+.loading .info-container {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -57,30 +45,41 @@
   height: 60%;
   padding: 8px 12px;
   text-align: center;
-  color: #fff;
   z-index: 20;
   transition: all 0.25s ease;
   transform: translateY(-20px);
 }
 
-.card-container .info-container .name {
+.loading .info-container .name {
   font-size: 1.8rem;
   font-weight: bold;
+  background-color: #fff7;
+  width: 200px;
+  height: 30px;
+  animation: LoadingFacultyCard 0.75s ease infinite alternate;
 }
 
-.card-container .info-container .rating {
+.loading .info-container .rating {
   font-size: 1.4rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  background-color: #fff7;
+  width: 200px;
+  height: 20px;
+  margin: 10px auto;
+  animation: LoadingFacultyCard 0.75s ease infinite alternate;
 }
 
-.card-container .info-container .department {
+.loading .info-container .department {
   color: #fffa;
   font-size: 1.2rem;
   font-weight: 400;
+  background-color: #fff7;
+  width: 250px;
+  height: 20px;
+  animation: LoadingFacultyCard 0.75s ease infinite alternate;
 }
 
-.card-container .rating-filler {
+.loading .rating-filler {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -89,11 +88,4 @@
   background-color: #44ea;
   z-index: 0;
   transition: height 0.35s ease-out;
-}
-
-/* MEDIA QUERIES FOR DIFFERENT SCREEN SIZES */
-@media (min-width: 780px) {
-  .card-container {
-    width: 325px;
-  }
 }
