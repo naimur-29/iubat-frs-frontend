@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useNavigate, useLocation } from "react-router-dom";
+import "./Users.css";
+
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const GET_USERS_URL = "users";
 

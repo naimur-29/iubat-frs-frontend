@@ -10,6 +10,7 @@ const Home = () => {
         <br />
         <span>Welcome</span>
       </h1>
+      <p className="notice">Make sure you logout before you leave the site!</p>
 
       <div className="btn-container">
         <Link to="/admin" className="btn">

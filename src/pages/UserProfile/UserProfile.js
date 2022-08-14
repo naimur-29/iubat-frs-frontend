@@ -38,7 +38,7 @@ const UserProfile = () => {
 
   const [menu, setMenu] = useState(false);
 
-  const [userVotes, setUserVotes] = useState(new Array(1).fill(null));
+  const [userVotes, setUserVotes] = useState(new Array(3).fill(null));
   const [votedFaculties, setVotedFaculties] = useState([]);
 
   const axiosPrivate = useAxiosPrivate();
@@ -83,6 +83,10 @@ const UserProfile = () => {
     get_user_votes();
     get_faculties();
   }, [axiosPrivate, userId]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <section className="user-profile-main-container">
