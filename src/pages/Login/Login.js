@@ -99,6 +99,9 @@ const Login = () => {
             >
               Logout
             </Link>
+            <Link to="/faculties" className="link">
+              View Faculties
+            </Link>
             <Link to="/" className="link">
               Return Home
             </Link>

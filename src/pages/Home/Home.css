@@ -104,6 +104,10 @@
 }
 
 @media (min-width: 720px) {
+  .home-main-container {
+    padding-top: 100px;
+  }
+
   .home-main-container .title {
     font-size: 4rem;
     margin-bottom: 20px;

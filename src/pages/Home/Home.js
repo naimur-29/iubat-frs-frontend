@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const user = JSON.parse(window.localStorage.getItem("userInfo"));
+    setIsAdmin(user?.role === "admin");
+  }, []);
+
   return (
     <div className="home-main-container">
       <h1 className="title">
@@ -13,9 +20,11 @@ const Home = () => {
       <p className="notice">Make sure you logout before you leave the site!</p>
 
       <div className="btn-container">
-        <Link to="/admin" className="btn">
-          {"Admin Panel"}
-        </Link>
+        {isAdmin && (
+          <Link to="/admin" className="btn">
+            {"Admin Panel"}
+          </Link>
+        )}
         <Link to="/faculties" className="btn">
           {"Browse Faculties"}
         </Link>

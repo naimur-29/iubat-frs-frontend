@@ -106,6 +106,17 @@ const Register = () => {
         <section className="register-main-container">
           <div className="on-success-container">
             <h1 className="success-text">Already logged in!</h1>
+            <Link
+              to="/"
+              className="link"
+              onClick={() => {
+                window.localStorage.removeItem("userInfo");
+                window.localStorage.setItem("loggedIn", "");
+                alert("Logout Successful!");
+              }}
+            >
+              Logout
+            </Link>
             <Link to="/faculties" className="link">
               View Faculties
             </Link>
