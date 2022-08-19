@@ -113,6 +113,7 @@ const Register = () => {
                 window.localStorage.removeItem("userInfo");
                 window.localStorage.setItem("loggedIn", "");
                 alert("Logout Successful!");
+                window.location.reload();
               }}
             >
               Logout

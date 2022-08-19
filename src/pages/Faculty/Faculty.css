@@ -48,7 +48,7 @@
   justify-content: center;
   flex-direction: column;
   margin-bottom: 20px;
-  animation: GlowBg2 10s ease-in alternate infinite;
+  animation: GlowBg 10s ease-in alternate infinite;
 }
 
 .faculty-main-container
@@ -136,7 +136,7 @@
   }
 
   .faculty-main-container .faculty-info-container .detailed-ratings-container {
-    animation: GrowWidth 1s ease-out, GlowBg2 10s ease-in alternate infinite;
+    animation: GrowWidth 1s ease-out, GlowBg 10s ease-in alternate infinite;
   }
 
   .faculty-main-container .voting-container {

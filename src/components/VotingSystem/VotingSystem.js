@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./VotingSystem.css";
 
@@ -11,7 +11,10 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
   const axiosPrivate = useAxiosPrivate();
   const userId = JSON.parse(window.localStorage.getItem("userInfo")).id;
 
+  const [isSubmitted, setIsSubmitted] = useState(true);
+
   const handleVoting = async () => {
+    setIsSubmitted(false);
     if (
       voteValue.teaching_value >= 0 &&
       voteValue.marking_value >= 0 &&
@@ -36,6 +39,8 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
         const response = await axiosPrivate.get(
           `/faculties/${id}/vote/${userId}`
         );
+
+        setIsSubmitted(true);
         setVoteValue(response?.data);
       } catch (err) {}
     }
@@ -48,23 +53,27 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
 
   return (
     <div className="container">
-      <div className="votes-container">
+      <div
+        className={
+          voteValue?.vote ? "votes-container submitted" : "votes-container"
+        }
+      >
         <div className="vote">
           <label>
             {`Teaching --> ${
-              voteValue.teaching_value ? voteValue.teaching_value : 0
+              voteValue?.teaching_value ? voteValue?.teaching_value : 0
             }`}
           </label>
-          {voteValue.vote ? (
+          {voteValue?.vote ? (
             <input
               type="range"
               min={0}
               max={10}
               className="disabled"
               disabled
-              value={voteValue.teaching_value ? voteValue.teaching_value : 0}
+              value={voteValue?.teaching_value ? voteValue?.teaching_value : 0}
               onChange={(e) =>
-                setVoteValue({ ...voteValue, teaching_value: e.target.value })
+                setVoteValue({ ...voteValue, teaching_value: e.target?.value })
               }
             />
           ) : (
@@ -72,9 +81,9 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
               type="range"
               min={0}
               max={10}
-              value={voteValue.teaching_value ? voteValue.teaching_value : 0}
+              value={voteValue?.teaching_value ? voteValue?.teaching_value : 0}
               onChange={(e) =>
-                setVoteValue({ ...voteValue, teaching_value: e.target.value })
+                setVoteValue({ ...voteValue, teaching_value: e.target?.value })
               }
             />
           )}
@@ -82,18 +91,18 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
 
         <div className="vote">
           <label>{`Marking --> ${
-            voteValue.marking_value ? voteValue.marking_value : 0
+            voteValue?.marking_value ? voteValue?.marking_value : 0
           }`}</label>
-          {voteValue.vote ? (
+          {voteValue?.vote ? (
             <input
               type="range"
               min={0}
               max={10}
               disabled
               className="disabled"
-              value={voteValue.marking_value ? voteValue.marking_value : 0}
+              value={voteValue?.marking_value ? voteValue?.marking_value : 0}
               onChange={(e) =>
-                setVoteValue({ ...voteValue, marking_value: e.target.value })
+                setVoteValue({ ...voteValue, marking_value: e.target?.value })
               }
             />
           ) : (
@@ -101,9 +110,9 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
               type="range"
               min={0}
               max={10}
-              value={voteValue.marking_value ? voteValue.marking_value : 0}
+              value={voteValue?.marking_value ? voteValue?.marking_value : 0}
               onChange={(e) =>
-                setVoteValue({ ...voteValue, marking_value: e.target.value })
+                setVoteValue({ ...voteValue, marking_value: e.target?.value })
               }
             />
           )}
@@ -112,10 +121,10 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
         <div className="vote">
           <label>
             {`Assignment --> ${
-              voteValue.assignment_value ? voteValue.assignment_value : 0
+              voteValue?.assignment_value ? voteValue?.assignment_value : 0
             }`}
           </label>
-          {voteValue.vote ? (
+          {voteValue?.vote ? (
             <input
               type="range"
               min={0}
@@ -123,10 +132,13 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
               disabled
               className="disabled"
               value={
-                voteValue.assignment_value ? voteValue.assignment_value : 0
+                voteValue?.assignment_value ? voteValue?.assignment_value : 0
               }
               onChange={(e) =>
-                setVoteValue({ ...voteValue, assignment_value: e.target.value })
+                setVoteValue({
+                  ...voteValue,
+                  assignment_value: e.target?.value,
+                })
               }
             />
           ) : (
@@ -135,7 +147,7 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
               min={0}
               max={10}
               value={
-                voteValue.assignment_value ? voteValue.assignment_value : 0
+                voteValue?.assignment_value ? voteValue?.assignment_value : 0
               }
               onChange={(e) =>
                 setVoteValue({ ...voteValue, assignment_value: e.target.value })
@@ -147,12 +159,17 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
 
       <div className="btn-container">
         <button className="btn" onClick={() => handleVoting()}>
-          {voteValue.vote ? "Remove" : "Submit"}
+          {voteValue?.vote ? "Remove" : "Submit"}
         </button>
         <button to="/faculties" className="btn" onClick={() => navigate(-1)}>
           Go Back
         </button>
       </div>
+      {!isSubmitted && (
+        <h3 className="submit-loading">
+          {voteValue?.vote ? "Removing" : "Submitting"}...
+        </h3>
+      )}
     </div>
   );
 };

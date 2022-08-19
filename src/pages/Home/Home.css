@@ -89,6 +89,7 @@
     max-width: 720px;
     font-size: 3.1rem;
     margin-bottom: 20px;
+    animation: GlowBgSubmitting 3s ease-in infinite alternate;
   }
 
   .home-main-container .notice {
