@@ -11,7 +11,9 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home-main-container">
+    <div
+      className={isAdmin ? "home-main-container admin" : "home-main-container"}
+    >
       <h1 className="title">
         IUBAT Faculty Rating System
         <br />

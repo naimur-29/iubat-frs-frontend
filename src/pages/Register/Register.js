@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { FaCheck, FaTimes, FaInfoCircle } from "react-icons/fa";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import axios from "../../api/axios";
 
@@ -11,6 +11,7 @@ const REGISTER_URL = "/users";
 
 const Register = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const userRef = useRef();
   const errRef = useRef();
@@ -113,6 +114,7 @@ const Register = () => {
                 window.localStorage.removeItem("userInfo");
                 window.localStorage.setItem("loggedIn", "");
                 alert("Logout Successful!");
+                navigate("/");
                 window.location.reload();
               }}
             >

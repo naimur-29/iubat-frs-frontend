@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./Users.css";
+import "./ManageUsers.css";
 
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 

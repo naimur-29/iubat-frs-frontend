@@ -95,6 +95,7 @@ const Login = () => {
                 window.localStorage.removeItem("userInfo");
                 window.localStorage.setItem("loggedIn", "");
                 alert("Logout Successful!");
+                navigate("/");
                 window.location.reload();
               }}
             >

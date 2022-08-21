@@ -10,8 +10,10 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
   const userId = JSON.parse(window.localStorage.getItem("userInfo")).id;
+  const userRole = JSON.parse(window.localStorage.getItem("userInfo")).role;
 
   const [isSubmitted, setIsSubmitted] = useState(true);
+  const [isDeleted, setIsDeleted] = useState(true);
 
   const handleVoting = async () => {
     setIsSubmitted(false);
@@ -49,6 +51,15 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
       const response = await axios.get(`/faculties/${id}`);
       setFaculty(response?.data);
     } catch (err) {}
+  };
+
+  const handleDeleteFaculty = async () => {
+    setIsDeleted(false);
+    try {
+      await axiosPrivate.delete(`faculties/${id}`);
+      setIsDeleted(true);
+      navigate(-1);
+    } catch {}
   };
 
   return (
@@ -161,15 +172,23 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
         <button className="btn" onClick={() => handleVoting()}>
           {voteValue?.vote ? "Remove" : "Submit"}
         </button>
-        <button to="/faculties" className="btn" onClick={() => navigate(-1)}>
+        <button className="btn" onClick={() => navigate(-1)}>
           Go Back
         </button>
+        {userRole === "admin" && (
+          <button className="btn" onClick={() => handleDeleteFaculty()}>
+            Delete Faculty
+          </button>
+        )}
       </div>
+
+      {/* Loading Animation / Progress Animation */}
       {!isSubmitted && (
         <h3 className="submit-loading">
           {voteValue?.vote ? "Removing" : "Submitting"}...
         </h3>
       )}
+      {!isDeleted && <h3 className="submit-loading">Deleting...</h3>}
     </div>
   );
 };

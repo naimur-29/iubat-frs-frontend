@@ -13,6 +13,9 @@ import Register from "./pages/Register/Register";
 import RequireAuth from "./components/Utils/RequireAuth";
 import DeleteAccount from "./components/DeleteAccount/DeleteAccount";
 import Unauthorized from "./components/Unauthorized/Unauthorized";
+import ManageUsers from "./components/ManageUsers/ManageUsers";
+import AddFaculty from "./components/AddFaculty/AddFaculty";
+import ManageVotes from "./components/ManageVotes/ManageVotes.js";
 
 const App = () => {
   return (
@@ -29,6 +32,9 @@ const App = () => {
         <Route element={<RequireAuth allowedRoles={["user", "admin"]} />}>
           <Route element={<RequireAuth allowedRoles={["admin"]} />}>
             <Route path="admin" element={<Admin />} />
+            <Route path="admin/users" element={<ManageUsers />} />
+            <Route path="admin/faculties" element={<AddFaculty />} />
+            <Route path="admin/votes" element={<ManageVotes />} />
           </Route>
           <Route path="user" element={<UserProfile />} />
           <Route path="faculties/:id" element={<Faculty />} />
@@ -36,20 +42,7 @@ const App = () => {
         </Route>
 
         {/* Error Paths */}
-        <Route
-          path="*"
-          element={
-            <h1
-              style={{
-                maxWidth: "1920px",
-                margin: "0 auto",
-                padding: "150px 20px 20px 20px",
-              }}
-            >
-              404 page not found!
-            </h1>
-          }
-        />
+        <Route path="*" element={<Unauthorized />} />
       </Route>
     </Routes>
   );

@@ -14,6 +14,10 @@
   animation: GlowBg 3s ease-in alternate infinite;
 }
 
+.home-main-container.admin {
+  padding-top: 100px;
+}
+
 .home-main-container .title {
   max-width: 390px;
   text-align: center;
@@ -106,6 +110,10 @@
 }
 
 @media (min-width: 720px) {
+  .home-main-container {
+    animation: Loading 0.75s ease, GlowBg 3s ease-in alternate infinite;
+  }
+
   .home-main-container .title {
     font-size: 4rem;
     margin-bottom: 20px;
