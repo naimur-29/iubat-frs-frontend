@@ -63,7 +63,7 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
   };
 
   return (
-    <div className="container">
+    <section className="container">
       <div
         className={
           voteValue?.vote ? "votes-container submitted" : "votes-container"
@@ -189,7 +189,7 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
         </h3>
       )}
       {!isDeleted && <h3 className="submit-loading">Deleting...</h3>}
-    </div>
+    </section>
   );
 };
 
