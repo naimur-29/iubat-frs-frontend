@@ -4,6 +4,7 @@ import "./ManageUsers.css";
 
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import GetUsers from "../GetUsers/GetUsers";
+import UsersPagination from "../UsersPagination/UsersPagination";
 
 const Users = () => {
   // users array
@@ -19,14 +20,14 @@ const Users = () => {
   // status message messages
   const [statusMessage, setStatusMessage] = useState("");
   // working/loading state
-  const [isWorking, setIsWorking] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   // delete user confirmation modal window state
   const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
   // userID of target user to delete
   const [userID, setUserID] = useState(null);
   // users pagination
   const [pageNo, setPageNo] = useState(1);
-  const [pageLimit] = useState(3);
+  const [pageLimit] = useState(10);
   const [skip, setSkip] = useState(0);
 
   // get users from api
@@ -39,13 +40,13 @@ const Users = () => {
 
   // delete users by id
   const handleDeleteUser = async () => {
-    setIsWorking(true);
+    setIsDeleting(true);
     try {
       const res = await axiosPrivate.delete(`users/${userID}`);
       res?.data && setStatusMessage(res);
       getUsers();
     } catch {}
-    setIsWorking(true);
+    setIsDeleting(false);
   };
 
   useEffect(() => {
@@ -55,7 +56,8 @@ const Users = () => {
   return (
     <section className="manage-users-container">
       <div className="main-container">
-        <h1>Manage Users</h1>
+        <h1 className="title">Manage Users</h1>
+
         <GetUsers
           users={users}
           currentUser={currentUser}
@@ -65,18 +67,37 @@ const Users = () => {
           pageLimit={pageLimit}
           skip={skip}
         />
+
+        {/* users pagination & other buttons */}
+        <div className="btn-container">
+          <UsersPagination
+            pageLimit={pageLimit}
+            pageNo={pageNo}
+            users={users}
+            setPageNo={setPageNo}
+            setSkip={setSkip}
+          />
+          <button className="btn" onClick={() => navigate(-1)}>
+            Go Back
+          </button>
+        </div>
       </div>
 
       {/* Delete Confirmation Modal/lightbox */}
-      <div className={isDeleteModalActive ? "overlay active" : "overlay"}></div>
-      <div className="confirmation-container">
-        <button
-          className={isDeleteModalActive ? "btn active" : "btn"}
-          onClick={() => handleDeleteUser()}
-        >
-          Are you sure?
+      <div
+        className={
+          isDeleteModalActive
+            ? "confirmation-container active"
+            : "confirmation-container"
+        }
+        onClick={() => setIsDeleteModalActive(false)}
+      >
+        <button className="btn" onClick={() => handleDeleteUser()}>
+          Delete
         </button>
       </div>
+
+      {isDeleting && <h3 className="deleting">Deleting...</h3>}
     </section>
   );
 };

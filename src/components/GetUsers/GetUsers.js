@@ -21,8 +21,8 @@ const GetUsers = ({
                 (user, index) =>
                   index < pageLimit + skip &&
                   index >= skip && (
-                    <li key={user.id}>
-                      <span className="user">
+                    <li key={user.id} className="user">
+                      <span className="username">
                         {index + 1}. {user.username}
                       </span>
                       <button

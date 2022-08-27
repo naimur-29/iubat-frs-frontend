@@ -1,0 +1,68 @@
+.users-container {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 720px;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.users-container .user {
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  border-radius: 4px;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (hover: hover) {
+  .users-container .user:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.users-container .user .username {
+  font-size: 1.3rem;
+  font-weight: 500;
+  width: 69%;
+}
+
+.users-container .user .delete-btn {
+  text-align: center;
+  border: none;
+  outline: none;
+  width: 30%;
+  height: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  margin-right: -10px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #f47d;
+  transition: transform 0.25s ease-out, translate 0.25s ease-in,
+    background 0.25s ease-in;
+}
+
+.users-container .user .delete-btn:active {
+  transform: scale(0.9);
+}
+
+@media (hover: hover) {
+  .users-container .user .delete-btn {
+    background-color: #f477;
+  }
+
+  .users-container .user .delete-btn:hover {
+    background-color: #f47;
+  }
+}

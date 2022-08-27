@@ -62,6 +62,16 @@
   }
 }
 
+@keyframes GlowBg3 {
+  0% {
+    background-color: #4ffa;
+  }
+
+  100% {
+    background-color: #44ea;
+  }
+}
+
 @keyframes GlowBgSubmitting {
   0% {
     text-shadow: -5px 0px 5px rgba(255, 255, 255);
@@ -69,6 +79,16 @@
 
   100% {
     text-shadow: 5px 0px 10px rgba(255, 255, 255);
+  }
+}
+
+@keyframes GlowBgSubmittingDeleting {
+  0% {
+    text-shadow: -5px 0px 5px rgba(255, 255, 255);
+  }
+
+  100% {
+    text-shadow: 5px 0px 10px #f47;
   }
 }
 
