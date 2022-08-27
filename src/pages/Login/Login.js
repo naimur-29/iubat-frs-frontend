@@ -20,6 +20,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
+  // loading state
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -29,6 +32,7 @@ const Login = () => {
   }, [user, password]);
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
     try {
@@ -76,6 +80,8 @@ const Login = () => {
       }
       errRef.current.focus();
     }
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -164,6 +170,8 @@ const Login = () => {
               </span>
             </p>
           </main>
+
+          {isLoading && <h3 className="deleting">Logging in...</h3>}
         </section>
       )}
     </>

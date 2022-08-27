@@ -29,13 +29,18 @@ const Users = () => {
   const [pageNo, setPageNo] = useState(1);
   const [pageLimit] = useState(10);
   const [skip, setSkip] = useState(0);
+  // loading state
+  const [isLoading, setIsLoading] = useState(false);
 
   // get users from api
   const getUsers = useCallback(async () => {
+    setIsLoading(true);
+
     try {
       const response = await axiosPrivate.get(`users`);
       response?.data && setUsers(response.data);
     } catch (err) {}
+    setIsLoading(false);
   }, [axiosPrivate]);
 
   // delete users by id
@@ -47,6 +52,7 @@ const Users = () => {
       getUsers();
     } catch {}
     setIsDeleting(false);
+    console.log(statusMessage);
   };
 
   useEffect(() => {
@@ -66,17 +72,22 @@ const Users = () => {
           setUserID={setUserID}
           pageLimit={pageLimit}
           skip={skip}
+          isLoading={isLoading}
         />
 
         {/* users pagination & other buttons */}
         <div className="btn-container">
-          <UsersPagination
-            pageLimit={pageLimit}
-            pageNo={pageNo}
-            users={users}
-            setPageNo={setPageNo}
-            setSkip={setSkip}
-          />
+          {users?.length ? (
+            <UsersPagination
+              pageLimit={pageLimit}
+              pageNo={pageNo}
+              users={users}
+              setPageNo={setPageNo}
+              setSkip={setSkip}
+            />
+          ) : (
+            <></>
+          )}
           <button className="btn" onClick={() => navigate(-1)}>
             Go Back
           </button>
@@ -98,6 +109,7 @@ const Users = () => {
       </div>
 
       {isDeleting && <h3 className="deleting">Deleting...</h3>}
+      {isLoading && <h3 className="deleting">Loading...</h3>}
     </section>
   );
 };

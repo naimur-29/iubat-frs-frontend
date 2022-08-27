@@ -35,6 +35,9 @@ const Register = () => {
   const [errMessage, setErrMessage] = useState("");
   const [success, setSuccess] = useState(false);
 
+  // Loading State
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -54,6 +57,7 @@ const Register = () => {
 
   // Handle Submit From Form
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     // if button enabled with JS hack
     const v1 = USER_REGEX.test(user);
@@ -86,6 +90,8 @@ const Register = () => {
       }
       errRef.current.focus();
     }
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -289,6 +295,8 @@ const Register = () => {
             </div>
           </main>
           <div className="placeholder"></div>
+
+          {isLoading && <h3 className="deleting">Registering...</h3>}
         </section>
       )}
     </>

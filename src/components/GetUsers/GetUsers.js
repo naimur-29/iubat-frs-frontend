@@ -39,7 +39,7 @@ const GetUsers = ({
               )}
         </ul>
       ) : (
-        <p>No users to display!</p>
+        <p className="no-users">No users to display!</p>
       )}
     </>
   );
