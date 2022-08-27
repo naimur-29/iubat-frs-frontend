@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./AddFaculty.css";
+import { useNavigate } from "react-router-dom";
 
 import FacultyCard from "../FacultyCard/FacultyCard";
 import LoadingFacultyCard from "../LoadingFacultyCard/LoadingFacultyCard";
@@ -9,6 +10,7 @@ const AddFaculty = () => {
   const [newFaculty, setNewFaculty] = useState({});
   const [isAdded, setIsAdded] = useState(true);
   const privateAxios = useAxiosPrivate();
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (!(newFaculty?.name && newFaculty?.img_url && newFaculty?.department)) {
@@ -79,9 +81,14 @@ const AddFaculty = () => {
             />
           </div>
 
-          <button className="btn" onClick={() => handleSubmit()}>
-            Add
-          </button>
+          <div className="btn-container">
+            <button className="btn" onClick={() => handleSubmit()}>
+              Add
+            </button>
+            <button className="btn" onClick={() => navigate(-1)}>
+              Go Back
+            </button>
+          </div>
         </div>
       </div>
       {!isAdded && <h3 className="submit-loading">Adding...</h3>}

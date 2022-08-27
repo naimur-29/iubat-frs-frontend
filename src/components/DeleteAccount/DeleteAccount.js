@@ -49,7 +49,6 @@ const Login = () => {
         );
 
         response?.data && (await axiosPrivate.delete(`/users/${id}`));
-        console.log(id);
 
         // saving info to local storage
         window.localStorage.removeItem("userInfo");

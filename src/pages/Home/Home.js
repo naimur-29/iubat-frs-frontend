@@ -30,7 +30,7 @@ const Home = () => {
         <Link to="/faculties" className="btn">
           {"Browse Faculties"}
         </Link>
-        <Link to="/register" className="btn">
+        <Link to="/login" className="btn">
           {"Login / Register"}
         </Link>
       </div>
