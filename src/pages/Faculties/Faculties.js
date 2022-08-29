@@ -9,8 +9,7 @@ import LoadingFacultyCard from "../../components/LoadingFacultyCard/LoadingFacul
 // departments
 const DEPARTMENTS = [
   ["Bachelors of Computer Science & Engineering", "BCSE"],
-  ["Bachelor of Business Administration", "BBA"],
-  ["Master of Business Administration", "MBA"],
+  ["Master of Business Administration", "MBA & BBA"],
   ["Bachelor of Science in Civil Engineering", "BSCE"],
   ["Bachelor of Science in Mechanical Engineering", "BSME"],
   ["Bachelor of Electrical & Electronics Engineering", "BEEE"],
@@ -19,6 +18,7 @@ const DEPARTMENTS = [
   ["Bachelor of Science in Agriculture", "BSAg"],
   ["Bachelor of Arts in Economics", "BAEcon"],
   ["Bachelor of Arts in English", "BA (English)"],
+  ["Quantitative Sciences & Mathematics", "QSM (Math)"],
 ];
 
 const Faculties = () => {
@@ -27,8 +27,6 @@ const Faculties = () => {
 
   // department state
   const [facultyDepartment, setFacultyDepartment] = useState(DEPARTMENTS[0][0]);
-
-  // const [facultyDepartmentHover, setFacultyDepartmentHover] = useState("");
 
   // loading state
   const [isLoading, setIsLoading] = useState(false);
@@ -102,6 +100,7 @@ const Faculties = () => {
                 setFacultyDepartment(item[0]);
                 setIsSelectDepartmentActive(false);
                 get_faculties();
+                window.scrollTo(0, 0);
               }}
             >
               {item[1]}

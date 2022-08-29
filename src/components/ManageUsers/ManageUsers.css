@@ -126,3 +126,10 @@
   font-size: 3.5rem;
   animation: GlowBgSubmittingDeleting 0.75s ease-in infinite alternate;
 }
+
+@media (min-width: 720px) {
+  .manage-users-container .loading {
+    font-size: 5.5rem;
+    animation: GlowBgSubmittingDeleting 0.75s ease-in infinite alternate;
+  }
+}

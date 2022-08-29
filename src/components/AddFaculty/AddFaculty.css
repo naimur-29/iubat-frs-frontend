@@ -146,6 +146,13 @@
   }
 }
 
+@media (min-width: 720px) {
+  .add-faculty-main-container .submit-loading {
+    font-size: 5.5rem;
+    animation: GlowBgSubmitting 0.75s ease-in infinite alternate;
+  }
+}
+
 @media (min-width: 840px) {
   .add-faculty-main-container .container {
     padding: 0 20px;
