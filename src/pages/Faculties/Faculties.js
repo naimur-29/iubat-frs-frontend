@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Faculties.css";
 import { Link } from "react-router-dom";
 
@@ -6,21 +6,56 @@ import axios from "../../api/axios";
 import FacultyCard from "../../components/FacultyCard/FacultyCard";
 import LoadingFacultyCard from "../../components/LoadingFacultyCard/LoadingFacultyCard";
 
+// departments
+const DEPARTMENTS = [
+  ["Bachelors of Computer Science & Engineering", "BCSE"],
+  ["Bachelor of Business Administration", "BBA"],
+  ["Master of Business Administration", "MBA"],
+  ["Bachelor of Science in Civil Engineering", "BSCE"],
+  ["Bachelor of Science in Mechanical Engineering", "BSME"],
+  ["Bachelor of Electrical & Electronics Engineering", "BEEE"],
+  ["Bachelor of Science in Nursing", "BSN"],
+  ["Bachelor of Arts in Tourism and Hospitality Management", "BATHM"],
+  ["Bachelor of Science in Agriculture", "BSAg"],
+  ["Bachelor of Arts in Economics", "BAEcon"],
+  ["Bachelor of Arts in English", "BA (English)"],
+];
+
 const Faculties = () => {
-  const [faculties, setFaculties] = useState(new Array(20).fill(null));
+  const [faculties, setFaculties] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [skip, setSkip] = useState(0);
+
+  // department state
+  const [facultyDepartment, setFacultyDepartment] = useState(DEPARTMENTS[0][0]);
+
+  // const [facultyDepartmentHover, setFacultyDepartmentHover] = useState("");
+
+  // loading state
+  const [isLoading, setIsLoading] = useState(false);
+
+  // select department state
+  const [isSelectDepartmentActive, setIsSelectDepartmentActive] =
+    useState(false);
+
+  const get_faculties = useCallback(async () => {
+    setIsLoading(true);
+    setFaculties(new Array(20).fill(null));
+
+    try {
+      const response = await axios.get(
+        `/faculties/rating?dep=${facultyDepartment.replace(" ", "+")}`
+      );
+      response?.data?.length && setFaculties(response.data);
+    } catch (err) {
+      setFaculties([]);
+    }
+
+    setIsLoading(false);
+  }, [facultyDepartment]);
 
   useEffect(() => {
-    const get_faculties = async () => {
-      try {
-        const response = await axios.get(`/faculties/rating?skip=${skip}`);
-        response?.data.length && setFaculties(response.data);
-      } catch (err) {}
-    };
-
     get_faculties();
-  }, [skip]);
+  }, [get_faculties]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,29 +63,78 @@ const Faculties = () => {
 
   return (
     <section className="faculties-main-container">
-      <input
-        type="text"
-        className="search-input"
-        placeholder="Search by name"
-        value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
-      />
+      <div className="filter-container">
+        {/* Search faculties */}
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search Faculties"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value.toLowerCase())}
+        />
+
+        {/* Filter Faculties by Department */}
+        <div
+          className={
+            isSelectDepartmentActive
+              ? "current-department active"
+              : "current-department"
+          }
+          onClick={() => setIsSelectDepartmentActive(!isSelectDepartmentActive)}
+        >
+          {facultyDepartment}
+        </div>
+
+        {/* departments selector modal */}
+        <div
+          className={
+            isSelectDepartmentActive
+              ? "departments-container active"
+              : "departments-container"
+          }
+        >
+          {DEPARTMENTS.map((item, index) => (
+            <div
+              className="department"
+              key={index}
+              onClick={() => {
+                setFaculties([]);
+                setFacultyDepartment(item[0]);
+                setIsSelectDepartmentActive(false);
+                get_faculties();
+              }}
+            >
+              {item[1]}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Render Faculties */}
       <div className="faculties-card-container">
-        {faculties[0]
-          ? faculties
-              .filter((element) =>
-                element.name.toLowerCase().includes(searchInput)
-              )
-              .map((item) => (
-                <Link
-                  to={`/faculties/${item.id}`}
-                  key={item.id}
-                  onClick={() => window.scrollTo(0, 0)}
-                >
-                  <FacultyCard item={item} />
-                </Link>
-              ))
-          : faculties.map((item, index) => <LoadingFacultyCard key={index} />)}
+        {isLoading ? (
+          faculties.map((item, index) => <LoadingFacultyCard key={index} />)
+        ) : faculties?.length ? (
+          faculties
+            .filter((element) =>
+              element.name.toLowerCase().includes(searchInput)
+            )
+            .map((item) => (
+              <Link
+                to={`/faculties/${item.id}`}
+                key={item.id}
+                onClick={() => window.scrollTo(0, 0)}
+              >
+                <FacultyCard item={item} />
+              </Link>
+            ))
+        ) : (
+          <h3 className="no-faculties">
+            Connection Lost !
+            <br />
+            Refresh The Page
+          </h3>
+        )}
       </div>
     </section>
   );

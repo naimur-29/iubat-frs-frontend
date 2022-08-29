@@ -26,6 +26,7 @@
   font-size: 2rem;
   margin-bottom: 10px;
   text-shadow: 3px 5px 10px rgba(0, 0, 0, 0.25);
+  animation: GlowBgSubmitting2 3s ease-in infinite alternate;
 }
 
 .home-main-container .title span {

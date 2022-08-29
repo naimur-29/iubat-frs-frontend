@@ -10,21 +10,129 @@
   gap: 100px;
   flex-direction: column;
   background-color: #44f7;
+  overflow-x: hidden;
   animation: Loading 1s ease-in;
 }
 
-.faculties-main-container .search-input {
+.faculties-main-container .filter-container {
+  width: 100%;
+  height: 100%;
   max-width: 1800px;
-  border-radius: 4px;
-  width: 325px;
-  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.faculties-main-container .filter-container .search-input {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  border-radius: 8px;
+  width: 100%;
   height: 60px;
   outline: none;
   border: none;
   padding: 10px 20px;
   font-size: 1.4rem;
   transition: all 0.35s ease;
+  cursor: pointer;
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.faculties-main-container .filter-container .search-input:focus {
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.15);
+}
+
+.faculties-main-container .filter-container .search-input::placeholder {
+  color: #fff;
+  text-align: center;
+  transition: all 0.35s ease-out;
+}
+
+.faculties-main-container .filter-container .search-input:focus::placeholder {
+  transform: translateX(1000px);
+}
+
+/* Filter Faculties */
+
+.faculties-main-container .filter-container .current-department {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  width: 100%;
+  min-height: 60px;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.15);
+  transition: all 0.35s ease;
+}
+
+.faculties-main-container .filter-container .current-department.active {
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* Departments selector */
+.faculties-main-container .filter-container .departments-container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 720px;
+  height: 100%;
+  border-radius: 4px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.faculties-main-container .filter-container .departments-container.active {
+  display: flex;
+}
+
+.faculties-main-container .filter-container .departments-container .department {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 1);
+}
+
+@media (hover: hover) {
+  .faculties-main-container .filter-container .current-department:hover,
+  .faculties-main-container .filter-container .search-input:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .faculties-main-container
+    .filter-container
+    .departments-container
+    .department:hover {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 1);
+    transform: translateY(-1px);
+  }
 }
 
 .faculties-main-container .faculties-card-container {
@@ -35,6 +143,18 @@
   justify-content: center;
   width: 100%;
   animation: BackUp 0.5s ease;
+}
+
+.faculties-main-container .faculties-card-container .no-faculties {
+  color: #fff;
+  font-size: 2.4rem;
+  text-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
+  width: 100vw;
+  max-width: 1800px;
+  transform: translateX(2vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* RESPONSIVE MEDIA QUERIES */

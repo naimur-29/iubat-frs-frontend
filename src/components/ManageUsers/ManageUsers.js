@@ -108,8 +108,8 @@ const Users = () => {
         </button>
       </div>
 
-      {isDeleting && <h3 className="deleting">Deleting...</h3>}
-      {isLoading && <h3 className="deleting">Loading...</h3>}
+      {isDeleting && <h3 className="loading">Deleting...</h3>}
+      {isLoading && <h3 className="loading">Loading...</h3>}
     </section>
   );
 };
