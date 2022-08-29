@@ -17,7 +17,7 @@
 }
 
 .admin-main-container .links-container .title {
-  font-size: 3.5rem;
+  font-size: 3rem;
   margin-bottom: 75px;
   text-align: center;
 }
@@ -41,5 +41,11 @@
 @media (hover: hover) {
   .admin-main-container .links-container .link:hover {
     transform: translateY(-3px);
+  }
+}
+
+@media (min-width: 380px) {
+  .admin-main-container .links-container .title {
+    font-size: 3.5rem;
   }
 }

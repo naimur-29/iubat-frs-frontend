@@ -1,0 +1,123 @@
+.manage-votes-main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  max-width: 1920px;
+  padding: 20px;
+  margin: 0 auto;
+  animation: Loading 1s ease-in, GlowBg2 3s ease-in infinite alternate;
+}
+
+.manage-votes-main-container .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 100%;
+}
+
+.manage-votes-main-container .container .title {
+  text-align: center;
+  color: #fff;
+  font-size: 2.7rem;
+  text-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
+  margin-bottom: 60px;
+  margin-top: -60px;
+}
+
+.manage-votes-main-container .container .btn-container {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.manage-votes-main-container .container .btn-container .btn {
+  background-color: #fff7;
+  color: #121212;
+  border: 4px solid #232323;
+  border-radius: 4px;
+  padding: 12px 20px;
+  font-size: 1.7rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.35s ease-out;
+}
+
+.manage-votes-main-container .container .btn-container .btn.delete {
+  background-color: #f67;
+  color: #fff;
+}
+
+.manage-votes-main-container .container .btn-container .btn:active {
+  transform: scale(1.1);
+}
+
+.manage-votes-main-container .alert-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 200%;
+  left: 0%;
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  transform: scale(2);
+  transition: all 0.35s ease;
+}
+
+.manage-votes-main-container .alert-delete.active {
+  transform: scale(1);
+  top: 0%;
+}
+
+.manage-votes-main-container .alert-delete .btn {
+  background-color: #f67;
+  color: #fff;
+  border: 4px solid #fff;
+  border-radius: 4px;
+  padding: 12px 20px;
+  font-size: 1.7rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 1);
+  transition: all 0.35s ease-out;
+}
+
+.manage-votes-main-container .alert-delete .btn:active {
+  transform: scale(1.1);
+}
+
+@media (hover: hover) {
+  .manage-votes-main-container .alert-delete .btn:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.manage-votes-main-container .deleting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  animation: GlowBgSubmittingDeleting 0.75s ease-in infinite alternate;
+}

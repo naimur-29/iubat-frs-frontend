@@ -11,7 +11,7 @@ const Admin = () => {
           Manage Users
         </Link>
         <Link to="faculties" className="link">
-          Manage Faculties
+          Add Faculties
         </Link>
         <Link to="votes" className="link">
           Manage Votes

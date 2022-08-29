@@ -8,7 +8,7 @@ import axios from "../../api/axios";
 const LOGIN_URL = "/login";
 
 const Login = () => {
-  const userRef = useRef();
+  const passwordRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
@@ -17,61 +17,62 @@ const Login = () => {
     window.localStorage.getItem("userInfo")
   )?.username;
 
-  const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
+  // loading state
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    userRef.current.focus();
+    passwordRef.current.focus();
   }, []);
 
   useEffect(() => {
     setErrMessage("");
-  }, [user, password]);
+  }, []);
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
     try {
-      if (user === targetUser) {
-        const response = await axios.post(
-          LOGIN_URL,
-          JSON.stringify({
-            username: user,
-            password: password,
-          }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              withCredentials: true,
-            },
-          }
-        );
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({
+          username: targetUser,
+          password: password,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            withCredentials: true,
+          },
+        }
+      );
 
-        response?.data && (await axiosPrivate.delete(`/users/${id}`));
+      response?.data && (await axiosPrivate.delete(`/users/${id}`));
 
-        // saving info to local storage
-        window.localStorage.removeItem("userInfo");
-        window.localStorage.setItem("loggedIn", "");
+      // saving info to local storage
+      window.localStorage.removeItem("userInfo");
+      window.localStorage.setItem("loggedIn", "");
 
-        setUser("");
-        setPassword("");
-        alert("Account Deleted Successfully!");
-        navigate("/");
-      }
-      setErrMessage("User doesn't match!");
+      setPassword("");
+      alert("Account Deleted Successfully!");
+      navigate("/");
     } catch (err) {
       if (!err?.response) {
         setErrMessage("Connection lost!");
       } else if (err.response?.status === 401) {
-        setErrMessage("Invalid username or password!");
+        setErrMessage("Invalid password!");
       } else if (err.response?.status === 400) {
-        setErrMessage("Missing username or password!");
+        setErrMessage("Missing password!");
       } else {
         setErrMessage("Request Failed!");
       }
       errRef.current.focus();
     }
+
+    setIsLoading(false);
   };
 
   return (
@@ -87,24 +88,11 @@ const Login = () => {
         </p>
 
         <form onSubmit={handleSubmit} className="login-form">
-          {/* Username Section */}
-          <section className="username">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              autoComplete="off"
-              ref={userRef}
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
-              required
-            />
-          </section>
-
           {/* Password Section */}
           <section className="password">
             <label htmlFor="password">Password</label>
             <input
+              ref={passwordRef}
               type="password"
               id="password"
               autoComplete="off"
@@ -118,6 +106,8 @@ const Login = () => {
           <button className="login-btn delete-btn">Delete</button>
         </form>
       </main>
+
+      {isLoading && <h3 className="deleting">Deleting...</h3>}
     </section>
   );
 };
