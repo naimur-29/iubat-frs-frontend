@@ -19,7 +19,10 @@ const DEPARTMENTS = [
   ["Bachelor of Arts in Economics", "BAEcon"],
   ["Bachelor of Arts in English", "BA (English)"],
   ["Quantitative Sciences & Mathematics", "QSM (Math)"],
-  ["Social Sciences", "Social Sciences"],
+  ["Social Sciences (Psychology)", "Psychology"],
+  ["Social Sciences (Philosophy)", "Philosophy"],
+  ["Physics", "Physics"],
+  ["Chemistry", "Chemistry"],
 ];
 
 const Faculties = () => {
