@@ -17,6 +17,12 @@ import ManageUsers from "./components/ManageUsers/ManageUsers";
 import AddFaculty from "./components/AddFaculty/AddFaculty";
 import ManageVotes from "./components/ManageVotes/ManageVotes.js";
 
+// DEMO
+import DemoAdmin from "./pages/DemoAdmin/DemoAdmin";
+import DemoManageUsers from "./components/Demo/DemoManageUsers/DemoManageUsers";
+import DemoAddFaculty from "./components/Demo/DemoAddFaculty/DemoAddFaculty";
+import DemoManageVotes from "./components/Demo/DemoManageVotes/DemoManageVotes";
+
 const App = () => {
   return (
     <Routes>
@@ -40,6 +46,11 @@ const App = () => {
           <Route path="faculties/:id" element={<Faculty />} />
           <Route path="user/accdel/:id" element={<DeleteAccount />} />
         </Route>
+
+        <Route path="demo&admin" element={<DemoAdmin />} />
+        <Route path="demo&admin/users" element={<DemoManageUsers />} />
+        <Route path="demo&admin/faculties" element={<DemoAddFaculty />} />
+        <Route path="demo&admin/votes" element={<DemoManageVotes />} />
 
         {/* Error Paths */}
         <Route path="*" element={<Unauthorized />} />

@@ -1,0 +1,135 @@
+.manage-users-container {
+  max-width: 1920px;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 100px 20px 20px 20px;
+  background-color: #44ea;
+  animation: Loading 1s ease-in, GlowBg3 3s ease-in infinite alternate;
+}
+
+.manage-users-container .main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.manage-users-container .main-container .title {
+  color: #fff;
+  font-size: 3rem;
+  text-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  margin-bottom: 50px;
+}
+
+.manage-users-container .main-container .btn-container {
+  display: flex;
+  width: 100%;
+  max-width: 720px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.manage-users-container .main-container .btn-container .btn {
+  width: 100%;
+  padding: 12px;
+  border: 3px solid #232323;
+  border-radius: 6px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.35s ease;
+}
+
+.manage-users-container .main-container .btn-container .btn:active {
+  transform: scale(0.95);
+}
+
+@media (hover: hover) {
+  .manage-users-container .main-container .btn-container .btn:hover {
+    background-color: #ddd;
+  }
+}
+
+/* Confirmation Modal Window */
+.manage-users-container .confirmation-container {
+  position: fixed;
+  top: 110%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0%;
+  height: 0%;
+  z-index: 100;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.35s ease;
+}
+
+.manage-users-container .confirmation-container.active {
+  width: 100%;
+  height: 100%;
+  top: 50%;
+}
+
+.manage-users-container .confirmation-container .btn {
+  width: 300px;
+  padding: 12px;
+  border: 4px solid #fff;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #f47;
+  color: #fff;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s ease-out;
+}
+
+.manage-users-container .confirmation-container .btn:active {
+  transform: scale(0.9);
+}
+
+@media (hover: hover) {
+  .manage-users-container .confirmation-container .btn {
+    background-color: #f477;
+  }
+
+  .manage-users-container .confirmation-container .btn:hover {
+    background-color: #f47;
+  }
+}
+
+/* Loading Animation */
+.manage-users-container .loading {
+  border: none;
+  border-radius: 0;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  animation: GlowBgSubmittingDeleting 0.75s ease-in infinite alternate;
+}
+
+@media (min-width: 720px) {
+  .manage-users-container .loading {
+    font-size: 5.5rem;
+    animation: GlowBgSubmittingDeleting 0.75s ease-in infinite alternate;
+  }
+}
