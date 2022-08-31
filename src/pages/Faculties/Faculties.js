@@ -42,12 +42,14 @@ const Faculties = () => {
   const get_faculties = useCallback(async () => {
     setIsLoading(true);
     setFaculties(new Array(20).fill(null));
+    console.log(facultyDepartment);
 
     try {
       const response = await axios.get(
         `/faculties/rating?dep=${facultyDepartment.replace(" ", "+")}`
       );
-      response?.data?.length && setFaculties(response.data);
+      console.log(response);
+      response?.data?.length ? setFaculties(response.data) : setFaculties([]);
     } catch (err) {
       setFaculties([]);
     }
@@ -100,10 +102,8 @@ const Faculties = () => {
               className="department"
               key={index}
               onClick={() => {
-                setFaculties([]);
                 setFacultyDepartment(item[0]);
                 setIsSelectDepartmentActive(false);
-                get_faculties();
                 window.scrollTo(0, 0);
               }}
             >
