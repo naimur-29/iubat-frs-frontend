@@ -3,6 +3,7 @@ import "./FacultyCard.css";
 
 const Card = ({ item }) => {
   const [avgRating, setAvgRating] = useState(0);
+  const [ratingStatus, setRatingStatus] = useState("Unavailable!");
 
   useEffect(() => {
     const avg = (
@@ -11,6 +12,15 @@ const Card = ({ item }) => {
     ).toFixed(1);
 
     setAvgRating(avg);
+    setRatingStatus(
+      avg > 0
+        ? avg > 7
+          ? "Excellent!"
+          : avg > 5
+          ? "Impressive!"
+          : "Good!"
+        : "Unavailable!"
+    );
   }, [item]);
 
   return (
@@ -26,8 +36,8 @@ const Card = ({ item }) => {
         <div className="description">
           <p className="rating">
             {isNaN(avgRating)
-              ? "Rating Unavailable!"
-              : `Average Rating ${avgRating} / 10`}
+              ? "Feedback Unavailable!"
+              : `Overall Feedback ${ratingStatus}`}
           </p>
           <p className="department">{item.department}</p>
         </div>

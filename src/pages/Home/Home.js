@@ -12,7 +12,7 @@ const Home = () => {
   const [isDemoUser, setIsDemoUser] = useState(false);
 
   // front notice of home page under title
-  const [notice, setNotice] = useState("Welcome to IUBAT FRS!");
+  const [notice, setNotice] = useState("Welcome to IUBAT FFS!");
 
   // demo user info
   const user = "DemoUser9";
@@ -82,16 +82,15 @@ const Home = () => {
     setNotice(
       isDemoUser
         ? "You can access the demo admin panel, but it won't affect the real data!"
-        : "Welcome to IUBAT FRS!"
+        : "Welcome to IUBAT FFS!"
     );
   }, [setIsDemoUser, setNotice, isDemoUser]);
 
   return (
     <section className="home-main-container">
       <h1 className="title">
-        IUBAT Faculty Rating System
-        <br />
-        <span>Welcome</span>
+        Faculty Feedback System
+        <span>IUBAT</span>
       </h1>
       <p className="notice">{notice}</p>
 

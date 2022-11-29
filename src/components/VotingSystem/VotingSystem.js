@@ -5,6 +5,15 @@ import "./VotingSystem.css";
 import axios from "../../api/axios";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
+const ratingMap = (num) =>
+  num > 0
+    ? num > 7
+      ? "Excellent!"
+      : num > 5
+      ? "Impressive!"
+      : "Good!"
+    : "Unavailable!";
+
 const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -71,9 +80,7 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
       >
         <div className="vote">
           <label>
-            {`Teaching --> ${
-              voteValue?.teaching_value ? voteValue?.teaching_value : 0
-            }`}
+            {`Teaching --> ${ratingMap(voteValue?.teaching_value)}`}
           </label>
           {voteValue?.vote ? (
             <input
@@ -101,9 +108,9 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
         </div>
 
         <div className="vote">
-          <label>{`Marking --> ${
-            voteValue?.marking_value ? voteValue?.marking_value : 0
-          }`}</label>
+          <label>{`Communication --> ${ratingMap(
+            voteValue?.marking_value
+          )}`}</label>
           {voteValue?.vote ? (
             <input
               type="range"
@@ -131,9 +138,7 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
 
         <div className="vote">
           <label>
-            {`Assignment --> ${
-              voteValue?.assignment_value ? voteValue?.assignment_value : 0
-            }`}
+            {`Engagement --> ${ratingMap(voteValue?.assignment_value)}`}
           </label>
           {voteValue?.vote ? (
             <input

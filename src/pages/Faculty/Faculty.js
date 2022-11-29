@@ -8,6 +8,15 @@ import FacultyCard from "../../components/FacultyCard/FacultyCard";
 import VotingSystem from "../../components/VotingSystem/VotingSystem";
 import LoadingFacultyCard from "../../components/LoadingFacultyCard/LoadingFacultyCard";
 
+const ratingMap = (num) =>
+  num > 0
+    ? num > 7
+      ? "Excellent!"
+      : num > 5
+      ? "Impressive!"
+      : "Good!"
+    : "Unavailable!";
+
 const Faculty = () => {
   const { id } = useParams();
   const axiosPrivate = useAxiosPrivate();
@@ -55,27 +64,28 @@ const Faculty = () => {
         </div>
 
         <div className="detailed-ratings-container">
-          <h3 className="title">Detailed Ratings Information</h3>
+          <h3 className="title">Detailed Feedback Information</h3>
           <div className="ratings-info">
             <div className="left">
               <p>Teaching</p>
-              <p>Marking</p>
-              <p>Assignment</p>
+              <p>Communication</p>
+              <p>Engagement</p>
             </div>
             <div className="right">
-              <p>{`${faculty?.teaching_rate}/10`}</p>
-              <p>{`${faculty?.marking_rate}/10`}</p>
-              <p>{`${faculty?.assignment_rate}/10`}</p>
+              <p>{ratingMap(faculty?.teaching_rate)}</p>
+              <p>{ratingMap(faculty?.marking_rate)}</p>
+              <p>{ratingMap(faculty?.assignment_rate)}</p>
             </div>
           </div>
         </div>
       </div>
 
       <div className="voting-container">
-        <h3 className="title">Rate This Faculty</h3>
+        <h3 className="title">Your Feedback Matters</h3>
         <p className="info">
-          You can only rate once! The ratings refresh at the starting of each
-          semester.
+          You've to provide feedback after every term exam except Final. Your
+          feedback will reach your faculty & your info is hidden. These
+          information refresh after First & Midterm.
         </p>
 
         <div className="voting-system">

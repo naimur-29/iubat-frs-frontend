@@ -18,7 +18,7 @@ const Navbar = () => {
       <nav className="nav-container">
         <div className="left">
           <h1 className="title">
-            <Link to="/">IUBAT FRS</Link>
+            <Link to="/">IUBAT FFS</Link>
           </h1>
         </div>
         <div className="right">
