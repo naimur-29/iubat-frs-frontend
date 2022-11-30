@@ -14,7 +14,12 @@ const ratingMap = (num) =>
       : "Good!"
     : "Unavailable!";
 
-const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
+const VotingSystem = ({
+  voteValue,
+  setVoteValue,
+  setFaculty,
+  setIsCommentBoxActive,
+}) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
@@ -60,6 +65,8 @@ const VotingSystem = ({ voteValue, setVoteValue, setFaculty }) => {
       const response = await axios.get(`/faculties/${id}`);
       setFaculty(response?.data);
     } catch (err) {}
+
+    setIsCommentBoxActive(voteValue?.vote ? false : true);
   };
 
   const handleDeleteFaculty = async () => {

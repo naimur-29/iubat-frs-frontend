@@ -25,6 +25,10 @@ const Faculty = () => {
   const [faculty, setFaculty] = useState({});
   const [voteValue, setVoteValue] = useState({});
 
+  // comment box states
+  const [isCommentBoxActive, setIsCommentBoxActive] = useState(false);
+  const [commentVal, setCommentVal] = useState("");
+
   useEffect(() => {
     const get_faculty = async () => {
       try {
@@ -54,6 +58,44 @@ const Faculty = () => {
 
   return (
     <div className="faculty-main-container">
+      {/* Comment Box */}
+      <div
+        className={
+          isCommentBoxActive
+            ? "comment-section-container active"
+            : "comment-section-container"
+        }
+      >
+        <div className="inner-container">
+          <h3 className="title">Provide Your Feedback</h3>
+          <input
+            type="text"
+            placeholder="optional comment for better improvement"
+            value={commentVal}
+            onChange={(e) => setCommentVal(e.target.value)}
+          />
+
+          <button
+            className="btn btn1"
+            onClick={() => {
+              setIsCommentBoxActive(false);
+              setCommentVal("");
+            }}
+          >
+            Add Comment
+          </button>
+          <button
+            className="btn btn2"
+            onClick={() => {
+              setIsCommentBoxActive(false);
+              setCommentVal("");
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+
       <div className="faculty-info-container">
         <div className="faculty-profile">
           {faculty?.name ? (
@@ -93,6 +135,7 @@ const Faculty = () => {
             voteValue={voteValue}
             setVoteValue={setVoteValue}
             setFaculty={setFaculty}
+            setIsCommentBoxActive={setIsCommentBoxActive}
           />
         </div>
       </div>

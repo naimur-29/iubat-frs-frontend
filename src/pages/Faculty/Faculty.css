@@ -9,6 +9,104 @@
   animation: Loading 1s ease-in;
 }
 
+/* Comment Box */
+.faculty-main-container .comment-section-container {
+  position: fixed;
+  left: 0;
+  top: -1000px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  z-index: 100;
+  transition: all 0.35s ease-in-out;
+}
+
+.faculty-main-container .comment-section-container.active {
+  top: 0;
+}
+
+.faculty-main-container .comment-section-container .inner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #44fa;
+  padding: 30px 20px;
+  width: 100%;
+  max-width: 720px;
+  border-radius: 4px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.faculty-main-container .comment-section-container .title {
+  color: #fff;
+  font-weight: 500;
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.faculty-main-container .comment-section-container input {
+  width: 100%;
+  margin: 20px;
+  height: 60px;
+  font-size: 1.4rem;
+  color: #232323;
+  padding: 0 10px;
+  border: none;
+  outline: none;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.faculty-main-container .comment-section-container input::placeholder {
+  text-align: center;
+  color: #aaa;
+}
+
+.faculty-main-container .comment-section-container .inner-container .btn {
+  background-color: #fff;
+  color: #4e4e4e;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 10px 5px;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.15s ease-in;
+}
+
+.faculty-main-container
+  .comment-section-container
+  .inner-container
+  .btn:active {
+  scale: 0.95;
+}
+
+.faculty-main-container
+  .comment-section-container
+  .inner-container
+  .btn1:hover {
+  background-color: #99f;
+  color: #fff;
+  text-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.faculty-main-container
+  .comment-section-container
+  .inner-container
+  .btn2:hover {
+  background-color: #f77;
+  color: #fff;
+  text-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+
 .faculty-main-container .faculty-info-container {
   display: flex;
   align-items: center;
